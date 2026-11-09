@@ -1,0 +1,11 @@
+{
+  "source": "https://github.com/Rullyeff/100",
+  "capabilities": [
+    {"capability": "Kaya Raya 3D board game (rules, scene, HUD, bots)", "source": "src/game", "outcome": "migrate", "status": "verified", "next_action": ""},
+    {"capability": "Audio, avatars, favicon, styles, fonts", "source": "public, src/assets, styles.css", "outcome": "migrate", "status": "verified", "next_action": ""},
+    {"capability": "3D city models (Kenney CC0)", "source": "source-project asset pointers", "outcome": "re-uploaded to this project's asset storage", "status": "verified", "next_action": ""},
+    {"capability": "Database", "source": "drizzle migrations", "outcome": "not migrated: only deprecated, unused 100 SUARA room tables; no app code reads or writes them", "status": "verified", "next_action": ""},
+    {"capability": "Auth", "source": "supabase boilerplate only", "outcome": "no login feature in source; not migrated", "status": "verified", "next_action": ""},
+    {"capability": "Providers, webhooks, schedules, secrets", "source": "source call sites", "outcome": "none detected; .env excluded", "status": "verified", "next_action": ""}
+  ]
+}

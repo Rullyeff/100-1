@@ -1,0 +1,1142 @@
+[
+  {
+    "code": "D-FD-01",
+    "title": "ANGGARAN KELAS   •   Forum Demokrasi",
+    "text": "Dua program sama-sama diminati: perpustakaan kelas atau alat olahraga. Pilih cara mengambil keputusan bersama. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Gunakan voting setelah setiap kelompok menyampaikan manfaat.",
+      "Susun prioritas berdasarkan survei kebutuhan dan musyawarah singkat."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-02",
+    "title": "JADWAL KEGIATAN   •   Forum Demokrasi",
+    "text": "Kelas hendak menentukan jadwal bakti sosial. Sebagian siswa bekerja paruh waktu. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Pilih jadwal mayoritas dengan kesempatan alternatif.",
+      "Uji dua jadwal melalui polling seluruh siswa."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-03",
+    "title": "LAYANAN TRANSPORTASI   •   Forum Demokrasi",
+    "text": "Warga mempertimbangkan halte tambahan atau perbaikan rute angkutan. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Voting setelah menyajikan data pengguna.",
+      "Bentuk kesepakatan awal dan uji rute selama satu bulan."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-04",
+    "title": "SAMPAH SEKOLAH   •   Forum Demokrasi",
+    "text": "Sekolah harus memilih komposter atau bank sampah. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Voting dengan informasi biaya dan tanggung jawab.",
+      "Pilih program percontohan dan evaluasi kemudian."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-05",
+    "title": "MUSYAWARAH KANTIN   •   Forum Demokrasi",
+    "text": "Dua kelompok meminta pilihan menu sehat yang berbeda. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Selenggarakan uji coba menu dan pemungutan suara.",
+      "Perwakilan kelas menegosiasikan menu bergilir."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-06",
+    "title": "AKSESIBILITAS AULA   •   Forum Demokrasi",
+    "text": "Forum harus menentukan urutan perbaikan pintu atau jalur landai. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Voting setelah menjelaskan urgensi keselamatan.",
+      "Meminta penilaian kebutuhan pengguna dan menyepakati prioritas."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-07",
+    "title": "FESTIVAL LOKAL   •   Forum Demokrasi",
+    "text": "Anggaran hanya cukup untuk satu kegiatan budaya pemuda. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Pilih lewat voting terbuka dengan informasi program.",
+      "Musyawarahkan gabungan kegiatan dengan lingkup lebih kecil."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-08",
+    "title": "BUKU SEKOLAH   •   Forum Demokrasi",
+    "text": "Sekolah akan membeli buku pengayaan atau memperbaiki koleksi rusak. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Bandingkan kebutuhan lalu voting usulan.",
+      "Pakai keputusan panel yang beranggotakan perwakilan siswa dan guru."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-09",
+    "title": "INTERNET PUBLIK   •   Forum Demokrasi",
+    "text": "Warga mengusulkan Wi-Fi taman atau akses perpustakaan digital. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Pilih berdasarkan peta akses dan voting.",
+      "Jalankan percontohan dua lokasi dengan evaluasi."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-10",
+    "title": "FASILITAS PUSKESMAS   •   Forum Demokrasi",
+    "text": "Warga memprioritaskan ruang tunggu atau antrean elektronik. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Voting setelah survei pengguna.",
+      "Musyawarah dengan staf dan kelompok pasien."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-11",
+    "title": "RUANG TERBUKA HIJAU   •   Forum Demokrasi",
+    "text": "Dua RT mengusulkan lokasi taman berbeda. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Pilih lewat perwakilan warga dengan data kebutuhan.",
+      "Gunakan konsultasi terbuka lalu voting."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-12",
+    "title": "DUKUNGAN UMKM   •   Forum Demokrasi",
+    "text": "Forum pedagang memilih pelatihan digital atau perbaikan kios bersama. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Lakukan voting setelah penjelasan biaya.",
+      "Mulai program percontohan dan evaluasi manfaat."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-13",
+    "title": "KONSELING SEKOLAH   •   Forum Demokrasi",
+    "text": "Siswa mengusulkan konseling daring atau tatap muka. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Voting dengan opsi layanan pendamping.",
+      "Musyawarah bersama perwakilan siswa dan guru BK."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-14",
+    "title": "KEAMANAN JALAN   •   Forum Demokrasi",
+    "text": "Warga memilih penerangan tambahan atau marka penyeberangan. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Voting setelah memeriksa data risiko.",
+      "Menetapkan langkah bertahap yang disetujui forum."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FD-15",
+    "title": "KEGIATAN INKLUSIF   •   Forum Demokrasi",
+    "text": "Panitia memilih ruang acara yang lebih luas atau lebih mudah diakses. Pemain lain melakukan voting atas pilihan berikut:",
+    "options": [
+      "Voting setelah audit akses.",
+      "Menyepakati ruang yang memenuhi kebutuhan akses minimum."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-01",
+    "title": "INOVASI LAYANAN DESA   •   Putusan Rakyat — Apresiasi",
+    "text": "Layanan dokumen berhasil dipercepat dan keluhan warga menurun setelah evaluasi terbuka. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-02",
+    "title": "PROGRAM PERPUSTAKAAN   •   Putusan Rakyat — Apresiasi",
+    "text": "Program perpustakaan keliling menjangkau sekolah yang sebelumnya sulit mengakses buku. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Bebas dari satu sanksi mundur di Gerbang."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-03",
+    "title": "PASAR BERSIH   •   Putusan Rakyat — Apresiasi",
+    "text": "Pedagang dan warga berhasil menjalankan pemilahan sampah pasar secara konsisten. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-04",
+    "title": "INFORMASI TERBUKA   •   Putusan Rakyat — Apresiasi",
+    "text": "Laporan anggaran dipublikasikan tepat waktu dan mudah dipahami warga. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Bebas dari satu sanksi kehilangan giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-05",
+    "title": "TRANSPORTASI RAMAH PENGGUNA   •   Putusan Rakyat — Apresiasi",
+    "text": "Perbaikan rute berhasil mempermudah akses pekerja dan siswa. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Dapatkan 1 lemparan dadu tambahan."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-06",
+    "title": "PROGRAM AIR BERSIH   •   Putusan Rakyat — Apresiasi",
+    "text": "Program air bersih membantu permukiman yang sebelumnya sulit mengakses layanan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-07",
+    "title": "PARTISIPASI PEMUDA   •   Putusan Rakyat — Apresiasi",
+    "text": "Forum pemuda berhasil menampung aspirasi dari kelompok yang sebelumnya jarang terdengar. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-08",
+    "title": "PELAPORAN AMAN   •   Putusan Rakyat — Apresiasi",
+    "text": "Kanal keluhan baru melindungi identitas pelapor dan mempercepat tindak lanjut. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Bebas dari satu sanksi kehilangan giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-09",
+    "title": "PERBAIKAN SEKOLAH   •   Putusan Rakyat — Apresiasi",
+    "text": "Proyek perbaikan sekolah selesai sesuai hasil peninjauan kebutuhan dan laporan biaya. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-10",
+    "title": "JALUR AKSESIBEL   •   Putusan Rakyat — Apresiasi",
+    "text": "Perbaikan jalur publik memudahkan akses pengguna dengan kebutuhan mobilitas berbeda. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Bebas dari satu sanksi mundur di Gerbang."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-11",
+    "title": "AKSI HEMAT ENERGI   •   Putusan Rakyat — Apresiasi",
+    "text": "Kampanye hemat energi di fasilitas umum menunjukkan penurunan pemakaian berdasarkan catatan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-12",
+    "title": "PROGRAM PELATIHAN KERJA   •   Putusan Rakyat — Apresiasi",
+    "text": "Pelatihan pemuda disusun berdasarkan kebutuhan peserta dan telah dievaluasi hasilnya. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-13",
+    "title": "ANTREAN LEBIH ADIL   •   Putusan Rakyat — Apresiasi",
+    "text": "Perbaikan antrean klinik membuat waktu tunggu lebih jelas dan membantu pasien prioritas. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Dapatkan 1 lemparan dadu tambahan."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-14",
+    "title": "KONSULTASI PUBLIK   •   Putusan Rakyat — Apresiasi",
+    "text": "Penyusunan aturan baru melibatkan warga dan menerima masukan tertulis dari kelompok terdampak. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Maju 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-A-15",
+    "title": "PEMULIHAN PASCABENCANA   •   Putusan Rakyat — Apresiasi",
+    "text": "Distribusi bantuan berjalan transparan dan dapat diaudit oleh masyarakat. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Maju 1 petak.",
+      "Dapatkan 1 lemparan dadu tambahan."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-01",
+    "title": "NEPOTISME TERBUKTI   •   Putusan Rakyat — Sanksi",
+    "text": "Pemeriksaan memastikan penunjukan kerabat tanpa proses yang adil dalam proyek fiktif ini. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Mundur 3 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-02",
+    "title": "DATA LAPORAN DIUBAH   •   Putusan Rakyat — Sanksi",
+    "text": "Audit menyatakan data capaian program telah diubah agar terlihat berhasil. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Lewati 1 giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-03",
+    "title": "KANAL ADUAN DITUTUP   •   Putusan Rakyat — Sanksi",
+    "text": "Pengelola terbukti sengaja menutup kanal aduan untuk menyembunyikan keluhan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Mundur 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-04",
+    "title": "ANGGARAN TANPA BUKTI   •   Putusan Rakyat — Sanksi",
+    "text": "Pemeriksaan menemukan pengeluaran kegiatan tanpa pertanggungjawaban yang dapat diuji. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Kembalikan hingga 2 suara ke stok asal."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-05",
+    "title": "DISKRIMINASI LAYANAN   •   Putusan Rakyat — Sanksi",
+    "text": "Pengawasan memastikan warga diperlakukan berbeda tanpa dasar layanan yang sah. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Lewati 1 giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-06",
+    "title": "JANJI PROGRAM FIKTIF   •   Putusan Rakyat — Sanksi",
+    "text": "Tim terbukti mengumumkan capaian program yang belum pernah dilakukan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Mundur 3 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-07",
+    "title": "KERAHASIAAN DILANGGARKAN   •   Putusan Rakyat — Sanksi",
+    "text": "Petugas terbukti mengunggah identitas lengkap warga tanpa izin yang diperlukan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Kembalikan hingga 2 suara ke stok asal."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-08",
+    "title": "FORUM TANPA UNDANGAN   •   Putusan Rakyat — Sanksi",
+    "text": "Panitia sengaja mengecualikan kelompok terdampak dari pertemuan penentuan kebijakan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Lewati 1 giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-09",
+    "title": "PROYEK ASAL JADI   •   Putusan Rakyat — Sanksi",
+    "text": "Pemeriksaan mendapati proyek fasilitas umum tidak memenuhi kualitas yang dijanjikan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Kembalikan hingga 2 suara ke stok asal."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-10",
+    "title": "HASIL VOTING DIPALSUKAN   •   Putusan Rakyat — Sanksi",
+    "text": "Bukti tertulis memastikan berita acara pemungutan suara sengaja diubah. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Lewati 1 giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-11",
+    "title": "BANTUAN TAK TEPAT SASARAN   •   Putusan Rakyat — Sanksi",
+    "text": "Audit menunjukkan daftar penerima bantuan dimanipulasi untuk mengutamakan kerabat. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Mundur 3 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-12",
+    "title": "TARIF TIDAK RESMI   •   Putusan Rakyat — Sanksi",
+    "text": "Pemeriksaan membuktikan penarikan biaya layanan yang tidak memiliki dasar resmi. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Lewati 1 giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-13",
+    "title": "KONFLIK KEPENTINGAN   •   Putusan Rakyat — Sanksi",
+    "text": "Penanggung jawab terbukti memilih penyedia yang terafiliasi tanpa mengungkap hubungan tersebut. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Kembalikan hingga 2 suara ke stok asal."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-14",
+    "title": "KELUHAN DIABAIKAN   •   Putusan Rakyat — Sanksi",
+    "text": "Tim sengaja tidak menindaklanjuti keluhan keselamatan yang telah tercatat berulang kali. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Mundur 2 petak."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-PR-S-15",
+    "title": "INFORMASI MENYESATKAN   •   Putusan Rakyat — Sanksi",
+    "text": "Pemeriksaan membuktikan informasi anggaran disampaikan secara sengaja menyesatkan. Empat pemain lain melakukan voting rahasia untuk menentukan konsekuensi:",
+    "options": [
+      "Mundur 1 petak.",
+      "Lewati 1 giliran."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-01",
+    "title": "SUARA MAYORITAS DAN AKSES   •   Final Democracy Test",
+    "text": "Sebagian besar warga mendukung taman hiburan, tetapi wilayah lain memerlukan akses air minum. Apakah jumlah dukungan cukup menjadi dasar utama keputusan? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-02",
+    "title": "KEBIJAKAN DARURAT   •   Final Democracy Test",
+    "text": "Pemerintah mempertimbangkan pembatasan aktivitas untuk menghadapi risiko banjir. Bagaimana menguji dasar dan durasi aturan? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-03",
+    "title": "PENGGUNAAN DATA WARGA   •   Final Democracy Test",
+    "text": "Aplikasi bantuan menyimpan data identitas warga agar layanan cepat. Bagaimana menyeimbangkan manfaat dan privasi? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-04",
+    "title": "ANGGARAN SEKOLAH   •   Final Democracy Test",
+    "text": "Perbaikan ruang kelas bersaing dengan program beasiswa. Kriteria apa yang perlu dipakai agar prioritas adil? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-05",
+    "title": "HARGA PASAR   •   Final Democracy Test",
+    "text": "Pedagang meminta pembatasan harga sementara, konsumen meminta ketersediaan barang. Bagaimana menilai dampaknya? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-06",
+    "title": "FORUM TERTUTUP   •   Final Democracy Test",
+    "text": "Keputusan publik diambil cepat tetapi warga terdampak tidak dilibatkan. Bagaimana menilai legitimasi prosesnya? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-07",
+    "title": "CELAH LAYANAN DIGITAL   •   Final Democracy Test",
+    "text": "Warga lansia kesulitan mengakses pendaftaran digital. Bagaimana merancang kebijakan yang tetap efisien dan adil? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-08",
+    "title": "SANKSI ATAS INFORMASI PALSU   •   Final Democracy Test",
+    "text": "Sekolah hendak menghukum siswa yang meneruskan informasi palsu. Bagaimana membedakan niat, dampak, dan hak klarifikasi? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-09",
+    "title": "RELOKASI PASAR   •   Final Democracy Test",
+    "text": "Relokasi pasar memperbaiki keselamatan tetapi menurunkan pendapatan sejumlah pedagang. Bagaimana memitigasi dampaknya? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-10",
+    "title": "KONFLIK RUANG HIJAU   •   Final Democracy Test",
+    "text": "Kota membutuhkan lapangan olahraga dan ruang resapan. Bagaimana memilih tata ruang berdasarkan data? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-11",
+    "title": "PENGADAAN SEKOLAH   •   Final Democracy Test",
+    "text": "Penawaran termurah memiliki mutu yang meragukan. Bagaimana mempertimbangkan harga, manfaat, dan akuntabilitas? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-12",
+    "title": "KETERWAKILAN RAPAT   •   Final Democracy Test",
+    "text": "Keputusan rapat sah menurut tata tertib tetapi banyak warga tidak menerima undangan. Apa yang perlu diperbaiki? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-13",
+    "title": "PROGRAM PENGURANGAN SAMPAH   •   Final Democracy Test",
+    "text": "Target pengurangan sampah tinggi, namun pelaksanaannya membebani pedagang kecil. Bagaimana memperbaiki kebijakan? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-14",
+    "title": "BANTUAN BENCANA   •   Final Democracy Test",
+    "text": "Bantuan mendesak harus disalurkan dengan data penerima yang belum lengkap. Bagaimana menyeimbangkan kecepatan dan pengawasan? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-FDT-15",
+    "title": "PENANGANAN KRITIK   •   Final Democracy Test",
+    "text": "Pemimpin menghadapi kritik tajam atas proyek publik. Bagaimana respons yang tepat tanpa membatasi kebebasan menyampaikan pendapat? Pilih salah satu pendekatan berikut; pemain yang seri kemudian saling membantah secara singkat:",
+    "options": [
+      "Memilih tindakan yang paling cepat mendapat dukungan tanpa meninjau dampak lain.",
+      "Menunggu seluruh pihak sepakat sebelum mengambil langkah apa pun.",
+      "Menetapkan keputusan dengan bukti yang tersedia, perlindungan hak, dan mekanisme evaluasi terbuka.",
+      "Menyerahkan sepenuhnya kepada kelompok yang paling berpengaruh."
+    ],
+    "answer": null,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-01",
+    "title": "MEMERIKSA KLAIM   •   Misi Pemenuhan Syarat",
+    "text": "Ada klaim hasil pemilihan tidak sah, tetapi belum ada bukti. Langkah awal paling bertanggung jawab adalah ...",
+    "options": [
+      "Menuduh panitia tanpa pemeriksaan.",
+      "Mengikuti akun paling populer.",
+      "Mengabaikan seluruh berita acara.",
+      "Memeriksa dokumen dan meminta klarifikasi berbasis bukti."
+    ],
+    "answer": 3,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-02",
+    "title": "ADUAN WARGA   •   Misi Pemenuhan Syarat",
+    "text": "Warga menyampaikan keluhan layanan yang belum dibalas. Respons paling tepat adalah ...",
+    "options": [
+      "Menutup aduan agar pekerjaan berkurang.",
+      "Menyalahkan pelapor.",
+      "Mencatat keluhan, memeriksa fakta, dan memberi tindak lanjut yang dapat ditelusuri.",
+      "Menunda tanpa penanggung jawab."
+    ],
+    "answer": 2,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-03",
+    "title": "MEMBANGUN KEPERCAYAAN   •   Misi Pemenuhan Syarat",
+    "text": "Sesudah perdebatan panas, tindakan mana yang paling membantu memulihkan kepercayaan?",
+    "options": [
+      "Menghapus kritik dari forum.",
+      "Menyebarkan rumor tentang kelompok lain.",
+      "Membuka data relevan, mengakui masalah, dan mengundang dialog terarah.",
+      "Meminta warga percaya tanpa penjelasan."
+    ],
+    "answer": 2,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-04",
+    "title": "TRANSPARANSI ANGGARAN   •   Misi Pemenuhan Syarat",
+    "text": "Catatan proyek berbeda dari laporan ringkas. Langkah yang paling tepat ...",
+    "options": [
+      "Menyembunyikan catatan transaksi.",
+      "Melakukan rekonsiliasi, koreksi, lalu mengumumkan hasil pemeriksaan.",
+      "Mengganti angka tanpa keterangan.",
+      "Menyerahkan keputusan kepada satu teman."
+    ],
+    "answer": 1,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-05",
+    "title": "FORUM INKLUSIF   •   Misi Pemenuhan Syarat",
+    "text": "Satu kelompok warga tidak dapat hadir karena tempat sulit diakses. Langkah perbaikan ...",
+    "options": [
+      "Membuka partisipasi alternatif dan meninjau akses lokasi.",
+      "Menganggap kelompok itu tidak berminat.",
+      "Menyatakan forum mewakili semua warga.",
+      "Menolak saran perubahan."
+    ],
+    "answer": 0,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-06",
+    "title": "PROGRAM PUBLIK   •   Misi Pemenuhan Syarat",
+    "text": "Sebuah program gagal mencapai target. Cara evaluasi yang tepat ...",
+    "options": [
+      "Membandingkan tujuan dan data hasil, lalu memperbaiki rencana.",
+      "Memperbanyak poster keberhasilan.",
+      "Menghapus indikator yang tidak tercapai.",
+      "Mengabaikan pengguna yang tidak puas."
+    ],
+    "answer": 0,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-07",
+    "title": "MUSYAWARAH BUNTU   •   Misi Pemenuhan Syarat",
+    "text": "Dua kelompok belum sepakat mengenai fasilitas publik. Respons ...",
+    "options": [
+      "Mengancam peserta yang menolak.",
+      "Memalsukan kesepakatan.",
+      "Membubarkan forum permanen.",
+      "Mencatat perbedaan dan menilai beberapa opsi berdasarkan kebutuhan bersama."
+    ],
+    "answer": 3,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-08",
+    "title": "ETIKA PEMIMPIN   •   Misi Pemenuhan Syarat",
+    "text": "Pemimpin mengetahui kesalahan dalam pengumuman resmi. Respons ...",
+    "options": [
+      "Menyalahkan masyarakat yang salah paham.",
+      "Mendiamkan agar tidak ramai.",
+      "Menerbitkan koreksi jelas dan bertanggung jawab.",
+      "Mengubah dokumen tanpa jejak."
+    ],
+    "answer": 2,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-09",
+    "title": "PEMANFAATAN BANTUAN   •   Misi Pemenuhan Syarat",
+    "text": "Data menunjukkan bantuan belum menjangkau warga paling rentan. Langkah ...",
+    "options": [
+      "Menambah bantuan hanya bagi kelompok terdekat.",
+      "Menolak semua pengaduan.",
+      "Memverifikasi hambatan akses dan memperbaiki kriteria serta distribusi.",
+      "Menyalahkan warga yang kesulitan mendaftar."
+    ],
+    "answer": 2,
+    "effect": ""
+  },
+  {
+    "code": "D-MPS-10",
+    "title": "PERDEBATAN DATA   •   Misi Pemenuhan Syarat",
+    "text": "Dua sumber memberikan angka berbeda. Tindakan logis ...",
+    "options": [
+      "Memilih angka yang menguntungkan diri sendiri.",
+      "Memeriksa definisi, periode, dan metode kedua sumber.",
+      "Menggabungkan angka tanpa memeriksa satuan.",
+      "Menganggap angka tertinggi selalu benar."
+    ],
+    "answer": 1,
+    "effect": ""
+  },
+  {
+    "code": "K-PR-01",
+    "title": "HUJAN LEBAT   •   Peristiwa",
+    "text": "Perjalanan menuju pertemuan warga tertunda karena hujan lebat.",
+    "options": [],
+    "answer": null,
+    "effect": "Mundur 2 petak; tidak menarik kartu dari petak tujuan."
+  },
+  {
+    "code": "K-PR-02",
+    "title": "RAPAT MOLOR   •   Peristiwa",
+    "text": "Forum berlangsung lebih lama daripada jadwal yang disepakati.",
+    "options": [],
+    "answer": null,
+    "effect": "Lewati 1 giliran."
+  },
+  {
+    "code": "K-PR-03",
+    "title": "RELAWAN DATANG   •   Peristiwa",
+    "text": "Relawan membantu persiapan kegiatan masyarakat.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 2 petak; tidak menarik kartu pada petak tujuan."
+  },
+  {
+    "code": "K-PR-04",
+    "title": "GANGGUAN JARINGAN   •   Peristiwa",
+    "text": "Jaringan internet putus ketika pendaftaran acara berlangsung.",
+    "options": [],
+    "answer": null,
+    "effect": "Mundur 1 petak."
+  },
+  {
+    "code": "K-PR-05",
+    "title": "PERBAIKAN RUTE   •   Peristiwa",
+    "text": "Jalur transportasi yang lebih cepat mulai digunakan.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 3 petak; tidak mengaktifkan petak yang dilewati."
+  },
+  {
+    "code": "K-PR-06",
+    "title": "POSTER SALAH TANGGAL   •   Peristiwa",
+    "text": "Poster acara terlanjur memuat tanggal yang keliru.",
+    "options": [],
+    "answer": null,
+    "effect": "Lewati 1 giliran untuk memperbaiki informasi."
+  },
+  {
+    "code": "K-PR-07",
+    "title": "BUKU DONASI   •   Peristiwa",
+    "text": "Komunitas mengirim buku untuk pojok belajar.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil hingga 1 suara dari stok area saat ini jika masih tersedia."
+  },
+  {
+    "code": "K-PR-08",
+    "title": "ANTREAN MEMANJANG   •   Peristiwa",
+    "text": "Kegiatan membutuhkan waktu tambahan untuk mengatur antrean.",
+    "options": [],
+    "answer": null,
+    "effect": "Mundur 2 petak."
+  },
+  {
+    "code": "K-PR-09",
+    "title": "FORUM TAMBAHAN   •   Peristiwa",
+    "text": "Warga meminta sesi dialog yang belum masuk jadwal.",
+    "options": [],
+    "answer": null,
+    "effect": "Lewati 1 giliran."
+  },
+  {
+    "code": "K-PR-10",
+    "title": "JALUR ALTERNATIF   •   Peristiwa",
+    "text": "Akses jalan yang sempat tertutup telah dibuka kembali.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 2 petak."
+  },
+  {
+    "code": "K-PR-11",
+    "title": "EVALUASI MENDADAK   •   Peristiwa",
+    "text": "Tim diminta meninjau laporan kegiatan sebelum melanjutkan agenda.",
+    "options": [],
+    "answer": null,
+    "effect": "Mundur 1 petak."
+  },
+  {
+    "code": "K-PR-12",
+    "title": "INFORMASI DIPERBAIKI   •   Peristiwa",
+    "text": "Koreksi informasi resmi membantu peserta memahami kegiatan.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 1 petak."
+  },
+  {
+    "code": "K-PR-13",
+    "title": "BAHAN ACARA TERLAMBAT   •   Peristiwa",
+    "text": "Perlengkapan rapat tertahan dalam pengiriman.",
+    "options": [],
+    "answer": null,
+    "effect": "Lewati 1 giliran."
+  },
+  {
+    "code": "K-PR-14",
+    "title": "KERJA BAKTI   •   Peristiwa",
+    "text": "Kerja sama warga membuat fasilitas siap digunakan lebih cepat.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 3 petak."
+  },
+  {
+    "code": "K-PR-15",
+    "title": "SALAH ARAH   •   Peristiwa",
+    "text": "Petunjuk menuju lokasi musyawarah kurang jelas.",
+    "options": [],
+    "answer": null,
+    "effect": "Mundur 2 petak."
+  },
+  {
+    "code": "K-PR-16",
+    "title": "PERALATAN PULIH   •   Peristiwa",
+    "text": "Alat pendukung kegiatan yang rusak dapat diperbaiki.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 1 petak."
+  },
+  {
+    "code": "K-PR-17",
+    "title": "CEK LAPANGAN   •   Peristiwa",
+    "text": "Kunjungan lapangan perlu dilakukan sebelum rapat selanjutnya.",
+    "options": [],
+    "answer": null,
+    "effect": "Mundur 1 petak."
+  },
+  {
+    "code": "K-PR-18",
+    "title": "PARTISIPASI MENINGKAT   •   Peristiwa",
+    "text": "Banyak warga mendaftar dalam forum yang terbuka.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil hingga 1 suara dari stok area saat ini jika tersedia."
+  },
+  {
+    "code": "K-PR-19",
+    "title": "JADWAL BERUBAH   •   Peristiwa",
+    "text": "Lokasi kegiatan harus dipindahkan dan jadwal diatur ulang.",
+    "options": [],
+    "answer": null,
+    "effect": "Lewati 1 giliran."
+  },
+  {
+    "code": "K-PR-20",
+    "title": "AKSES DIPERMUDAH   •   Peristiwa",
+    "text": "Penyediaan petunjuk akses mempersingkat perjalanan peserta.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 2 petak."
+  },
+  {
+    "code": "K-KS-01",
+    "title": "UNDANGAN DISKUSI   •   Kesempatan",
+    "text": "Kamu diundang memberi masukan pada agenda publik yang relevan.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Aspirasi Mudah sesuai area saat ini; jika benar, dapatkan hadiah sesuai stok area."
+  },
+  {
+    "code": "K-KS-02",
+    "title": "PRESENTASI PROGRAM   •   Kesempatan",
+    "text": "Kamu diberi kesempatan mempresentasikan gagasan kebijakan.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Aspirasi Sedang sesuai area saat ini; jika berhasil, dapatkan hadiah sesuai stok."
+  },
+  {
+    "code": "K-KS-03",
+    "title": "KANAL ASPIRASI   •   Kesempatan",
+    "text": "Satu kelompok warga membuka akses dialog tambahan.",
+    "options": [],
+    "answer": null,
+    "effect": "Boleh mengambil satu Kartu Demokrasi Cek Fakta; jika berhasil, dapatkan Token Area bila belum dimiliki."
+  },
+  {
+    "code": "K-KS-04",
+    "title": "JALUR CEPAT   •   Kesempatan",
+    "text": "Ada rute alternatif yang aman menuju agenda berikutnya.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 2 petak tanpa mengaktifkan petak yang dilewati."
+  },
+  {
+    "code": "K-KS-05",
+    "title": "UNDIAN GILIRAN   •   Kesempatan",
+    "text": "Panitia memberikan kesempatan bergerak sekali lagi.",
+    "options": [],
+    "answer": null,
+    "effect": "Lempar dadu satu kali tambahan; tanpa rantai lemparan tambahan."
+  },
+  {
+    "code": "K-KS-06",
+    "title": "LAYANAN PENDAMPING   •   Kesempatan",
+    "text": "Komunitas menawarkan bantuan untuk menyampaikan masukan.",
+    "options": [],
+    "answer": null,
+    "effect": "Dapatkan hak membatalkan satu sanksi mundur dari Kartu Kejutan; catat di player mat."
+  },
+  {
+    "code": "K-KS-07",
+    "title": "KELAS TERBUKA   •   Kesempatan",
+    "text": "Kamu memperoleh akses pelatihan singkat bagi kelompok warga.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Aspirasi Mudah sesuai area saat ini."
+  },
+  {
+    "code": "K-KS-08",
+    "title": "MITRA RELAWAN   •   Kesempatan",
+    "text": "Kelompok relawan membantu mempercepat koordinasi lapangan.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 1 petak, tanpa mengaktifkan kartu tujuan."
+  },
+  {
+    "code": "K-KS-09",
+    "title": "PENDATAAN BARU   •   Kesempatan",
+    "text": "Kamu dapat memverifikasi kebutuhan sebelum program ditetapkan.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Aspirasi Sedang sesuai area; jawaban benar menghasilkan hadiah sesuai stok."
+  },
+  {
+    "code": "K-KS-10",
+    "title": "DIALOG TAMBAHAN   •   Kesempatan",
+    "text": "Warga membuka kesempatan mendengar pendapat lain.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Demokrasi Refleksi; jawaban benar memungkinkan token area jika belum dimiliki."
+  },
+  {
+    "code": "K-KS-11",
+    "title": "UMPAN BALIK POSITIF   •   Kesempatan",
+    "text": "Program pengaduan mulai digunakan secara bertanggung jawab.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil hingga 1 suara dari stok area saat ini jika tersedia."
+  },
+  {
+    "code": "K-KS-12",
+    "title": "RELAWAN KELILING   •   Kesempatan",
+    "text": "Tim relawan membantu perjalanan ke lokasi pertemuan.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 3 petak; petak yang dilewati tidak aktif."
+  },
+  {
+    "code": "K-KS-13",
+    "title": "POJOK INFORMASI   •   Kesempatan",
+    "text": "Kamu menemukan kanal informasi resmi untuk mengecek program.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Demokrasi Cek Fakta; jika benar, dapatkan Token Area jika belum dimiliki."
+  },
+  {
+    "code": "K-KS-14",
+    "title": "KOMUNITAS SEKOLAH   •   Kesempatan",
+    "text": "OSIS mengajakmu ikut latihan penyusunan program.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Aspirasi Mudah sesuai area saat ini."
+  },
+  {
+    "code": "K-KS-15",
+    "title": "KESEMPATAN REVISI   •   Kesempatan",
+    "text": "Kamu diberi peluang memperbaiki strategi komunikasi.",
+    "options": [],
+    "answer": null,
+    "effect": "Dapatkan hak mengulang sekali tantangan Aspirasi yang gagal pada giliran ini; gunakan kartu baru."
+  },
+  {
+    "code": "K-KS-16",
+    "title": "PRIORITAS DARURAT   •   Kesempatan",
+    "text": "Kamu memperoleh data kebutuhan warga yang dapat dibuktikan.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Aspirasi Sedang sesuai area; hadiah sesuai stok bila benar."
+  },
+  {
+    "code": "K-KS-17",
+    "title": "TAMBAHAN JANGKAUAN   •   Kesempatan",
+    "text": "Sebuah tempat rapat baru mudah dijangkau dari berbagai arah.",
+    "options": [],
+    "answer": null,
+    "effect": "Maju 2 petak."
+  },
+  {
+    "code": "K-KS-18",
+    "title": "DISKUSI TERFOKUS   •   Kesempatan",
+    "text": "Forum terbuka mengundangmu untuk menelaah isu bersama.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Demokrasi Dilema; jika mendapat skor ≥3, dapatkan Token Area jika belum dimiliki."
+  },
+  {
+    "code": "K-KS-19",
+    "title": "PELAPORAN TERBUKA   •   Kesempatan",
+    "text": "Ada kesempatan menunjukkan bukti hasil program.",
+    "options": [],
+    "answer": null,
+    "effect": "Ambil satu Kartu Demokrasi Refleksi; jika benar, dapatkan Token Area jika belum dimiliki."
+  },
+  {
+    "code": "K-KS-20",
+    "title": "RUTE SINGKAT   •   Kesempatan",
+    "text": "Kamu menemukan akses aman menuju agenda berikutnya.",
+    "options": [],
+    "answer": null,
+    "effect": "Lempar dadu satu kali tambahan; maksimal satu kali tambahan pada giliran ini."
+  }
+]
