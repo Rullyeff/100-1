@@ -28,6 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+## Database migrations
+
+- The Drizzle migration set is intentionally empty (no migration files, zero journal entries, zero applied rows); the database's online-rooms tables and functions predate Drizzle and are read by the `/ruang` routes, so keep them and write new changes as fresh custom migrations instead of re-deriving a baseline snapshot from the live schema.
+
 ## Game architecture
 
 - Online rooms use authenticated membership and server-authoritative, versioned turn-boundary replay; private RNG, decks and answer transcripts never reach clients, so reconnect does not depend on a host browser.
