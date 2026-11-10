@@ -12,7 +12,7 @@ import type { SeatSetup } from "../sim/state";
 import { DEFAULT_SEATS, useGame } from "../store";
 import { sfx } from "../audio";
 import { roomOperation } from "../online/rooms.functions";
-import { AVATAR_LIST, DEFAULT_SEAT_AVATARS, avatarSrc } from "./avatars";
+import { AVATAR_LIST, DEFAULT_SEAT_AVATARS, PICKER_AVATARS, avatarSrc } from "./avatars";
 
 export type LobbyMode = "bersama" | "bot";
 
@@ -131,15 +131,15 @@ function AvatarPicker({ value, onPick, onClose }: { value: number; onPick: (i: n
           <h3 className="font-display text-xl">Pilih avatar</h3>
           <button className="lobby-icon-btn h-9 w-9" onClick={onClose} aria-label="Tutup"><X className="h-4 w-4" /></button>
         </div>
-        <div className="grid grid-cols-5 gap-2 sm:grid-cols-6">
-          {AVATAR_LIST.map((src, i) => (
+        <div className="grid grid-cols-5 gap-2 sm:gap-3">
+          {PICKER_AVATARS.map((i) => { const src = AVATAR_LIST[i]!; return (
             <button key={i} type="button" aria-label={`Avatar ${i + 1}`} aria-pressed={value === i}
               onClick={() => { sfx.click(); onPick(i); onClose(); }}
-              className={cn("relative aspect-square overflow-hidden rounded-full border-2 transition-transform hover:scale-105", value === i ? "border-gold" : "border-transparent opacity-80")}>
+              className={cn("relative aspect-square overflow-hidden rounded-full border-2 bg-foreground transition-transform hover:scale-105", value === i ? "border-gold" : "border-transparent opacity-80")}>
               <img src={src} alt="" width={64} height={64} className="h-full w-full object-cover" />
               {value === i && <Check className="absolute right-0 top-0 h-4 w-4 rounded-full bg-gold p-0.5 text-primary-foreground" />}
             </button>
-          ))}
+          ); })}
         </div>
       </div>
     </div>
