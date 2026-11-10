@@ -16,18 +16,21 @@ export type Database = {
     Tables: {
       online_members: {
         Row: {
+          avatar: number
           name: string
           room_id: string
           seat: number
           user_id: string
         }
         Insert: {
+          avatar?: number
           name: string
           room_id: string
           seat: number
           user_id: string
         }
         Update: {
+          avatar?: number
           name?: string
           room_id?: string
           seat?: number
@@ -101,10 +104,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      create_online_room: { Args: { p_name: string }; Returns: string }
+      create_online_room: {
+        Args: { p_avatar?: number; p_name: string; p_seat?: number }
+        Returns: string
+      }
       is_online_member: { Args: { p_room: string }; Returns: boolean }
       join_online_room: {
-        Args: { p_code: string; p_name: string }
+        Args: {
+          p_avatar?: number
+          p_code: string
+          p_name: string
+          p_seat?: number
+        }
         Returns: string
       }
       leave_online_room: { Args: { p_room: string }; Returns: undefined }
