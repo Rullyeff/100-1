@@ -34,6 +34,8 @@ use the editor.
 
 ## Game architecture
 
+- The Kaya Raya monopoly game (adopted from the Rullyeff/100 repo) lives self-contained in `src/kaya-raya/` at `/kaya-raya`, never importing `src/game/`, so changes to either game cannot break the other; its seat colours are scoped by the `.kaya-raya-theme` wrapper.
+
 - Online rooms use authenticated membership and server-authoritative, versioned turn-boundary replay; private RNG, decks and answer transcripts never reach clients, so reconnect does not depend on a host browser.
 - Online room metadata and seats are member-readable with RLS; runtime is service-only and actions use revision compare-and-swap to reject duplicate or stale submissions.
 - Game UI inherits the site palette inside `game-ui-theme`, while the player top bar uses its own board-aligned semantic tokens; scoped tokens keep scene materials and printed board art isolated from interface theme changes.
