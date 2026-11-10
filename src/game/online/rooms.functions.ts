@@ -1,9 +1,16 @@
 import { createServerFn } from '@tanstack/react-start';
-import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware';
+import { requireRoomAuth as requireSupabaseAuth } from './room-auth';
 import { z } from 'zod';
 import { createGame } from '../sim/state';
 import { assertActor, resume, validateAnswer, type Checkpoint } from './runner';
 import type { Json } from '@/integrations/supabase/types';
+
+/** Server-only key proving room writes come from this app's server, not a player's browser. */
+function serverSecret() {
+  const secret = process.env['ONLINE_ROOM_SECRET'];
+  if (!secret) throw new Error('Server belum diatur: kunci ruang online (ONLINE_ROOM_SECRET) belum diisi');
+  return secret;
+}
 
 const roomInput = z.object({ roomId: z.string().uuid() });
 export const roomOperation = createServerFn({ method: 'POST' })
@@ -35,8 +42,8 @@ export const readRoom = createServerFn({ method: 'POST' })
     const me = members.find(m => m.user_id === context.userId);
     if (!me) throw new Error('Bukan anggota ruang');
     if (room.status !== 'playing') return { room, members, seat: me.seat, runtime: null };
-    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
-    const { data: runtime } = await supabaseAdmin.from('online_runtime').select('*').eq('room_id', room.id).single();
+    const { data: rows } = await context.supabase.rpc('online_runtime_get', { p_secret: serverSecret(), p_room: room.id });
+    const runtime = rows?.[0];
     if (!runtime) throw new Error('Permainan tidak dapat dimuat');
     const result = resume(runtime.checkpoint as unknown as Checkpoint);
     // Never disclose future draws or the private answer transcript to players.
@@ -58,8 +65,7 @@ export const startRoom = createServerFn({ method: 'POST' })
       if (player) { player.name = member.name; player.isBot = false; }
     }
     const checkpoint = resume({ version: 1, base: game, answers: [] }).checkpoint;
-    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
-    const { error } = await supabaseAdmin.rpc('start_online_room', { p_room: room.id, p_user: context.userId, p_checkpoint: checkpoint as unknown as Json });
+    const { error } = await context.supabase.rpc('online_room_begin', { p_secret: serverSecret(), p_room: room.id, p_checkpoint: checkpoint as unknown as Json });
     if (error) throw new Error(error.message);
     return true;
   });
@@ -69,15 +75,16 @@ export const submitRoomAnswer = createServerFn({ method: 'POST' })
   .handler(async ({ data, context }) => {
     const { data: member } = await context.supabase.from('online_members').select('seat').eq('room_id', data.roomId).eq('user_id', context.userId).single();
     if (!member) throw new Error('Bukan anggota ruang');
-    const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
-    const { data: runtime } = await supabaseAdmin.from('online_runtime').select('*').eq('room_id', data.roomId).single();
+    const secret = serverSecret();
+    const { data: rows } = await context.supabase.rpc('online_runtime_get', { p_secret: secret, p_room: data.roomId });
+    const runtime = rows?.[0];
     if (!runtime || runtime.revision !== data.revision) return { accepted: false };
     const result = resume(runtime.checkpoint as unknown as Checkpoint);
     assertActor(result.pending, member.seat);
     if (!result.pending) throw new Error('Permainan selesai');
     const answer = validateAnswer(result.pending, data.answer);
     const next = resume({ ...result.checkpoint, answers: [...result.checkpoint.answers, answer] });
-    const { data: saved, error } = await supabaseAdmin.from('online_runtime').update({ checkpoint: next.checkpoint as unknown as Json, revision: runtime.revision + 1, updated_at: new Date().toISOString() }).eq('room_id', data.roomId).eq('revision', data.revision).select('revision');
+    const { data: saved, error } = await context.supabase.rpc('online_runtime_save', { p_secret: secret, p_room: data.roomId, p_revision: data.revision, p_checkpoint: next.checkpoint as unknown as Json });
     if (error) throw new Error('Jawaban belum tersimpan, coba lagi');
-    return { accepted: Boolean(saved?.length) };
+    return { accepted: saved === true };
   });
