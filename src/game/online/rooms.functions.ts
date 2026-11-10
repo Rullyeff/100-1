@@ -8,12 +8,19 @@ import type { Json } from '@/integrations/supabase/types';
 const roomInput = z.object({ roomId: z.string().uuid() });
 export const roomOperation = createServerFn({ method: 'POST' })
   .middleware([requireSupabaseAuth])
-  .inputValidator(z.object({ operation: z.enum(['create', 'join', 'leave']), name: z.string().trim().min(1).max(24), code: z.string().max(8).optional(), roomId: z.string().uuid().optional() }))
+  .inputValidator(z.object({
+    operation: z.enum(['create', 'join', 'leave']),
+    name: z.string().trim().min(1).max(24),
+    code: z.string().max(8).optional(),
+    roomId: z.string().uuid().optional(),
+    seat: z.number().int().min(0).max(4).optional(),
+    avatar: z.number().int().min(0).max(63).optional(),
+  }))
   .handler(async ({ data, context }) => {
     const result = data.operation === 'create'
-      ? await context.supabase.rpc('create_online_room', { p_name: data.name })
+      ? await context.supabase.rpc('create_online_room', { p_name: data.name, p_seat: data.seat ?? 0, p_avatar: data.avatar ?? 0 })
       : data.operation === 'join'
-        ? await context.supabase.rpc('join_online_room', { p_name: data.name, p_code: data.code ?? '' })
+        ? await context.supabase.rpc('join_online_room', { p_name: data.name, p_code: data.code ?? '', p_seat: data.seat, p_avatar: data.avatar ?? 0 })
         : await context.supabase.rpc('leave_online_room', { p_room: data.roomId ?? '' });
     if (result.error) throw new Error(result.error.message);
     return typeof result.data === 'string' ? result.data : null;
