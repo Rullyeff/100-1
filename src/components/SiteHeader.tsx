@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Home, CircleHelp, KeyRound, Trophy, Dices } from "lucide-react";
+import { Home, CircleHelp, KeyRound, Trophy } from "lucide-react";
 import { Button } from '@/components/ui/button';
 import logoUrl from "@/assets/logo-100-suara.png";
 const logo = { url: logoUrl };
@@ -10,7 +10,6 @@ const NAV = [
   { to: "/tentang", label: "Tentang Permainan", icon: CircleHelp },
   { to: "/kunci-jawaban", label: "Kunci Jawaban", icon: KeyRound },
   { to: "/peringkat", label: "Papan Peringkat", icon: Trophy },
-  { to: "/kaya-raya", label: "Kaya Raya", icon: Dices },
 ] as const;
 
 export function SiteHeader() {
