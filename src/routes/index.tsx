@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bot, Dices, KeyRound, BriefcaseBusiness, ChevronRight, CircleHelp, GraduationCap, HeartHandshake, Landmark, Leaf, Map as MapIcon, Play, Trophy, Users, Vote } from "lucide-react";
+import { Bot, KeyRound, BriefcaseBusiness, ChevronRight, CircleHelp, GraduationCap, HeartHandshake, Landmark, Leaf, Map as MapIcon, Play, Trophy, Users, Vote } from "lucide-react";
 import { PlayerAvatar } from "@/components/game/PlayerAvatar";
 import { SoundToggle } from "@/components/SoundToggle";
 import splash from "@/assets/beranda-game-splash.jpg";
@@ -112,11 +112,6 @@ function Index() {
             <Link to="/main" className="home-btn home-alt">
               <span className="home-alt-icon"><Bot /></span>
               <span className="home-btn-label"><b>LATIHAN VS BOT</b><small>Main sendiri, kapan saja</small></span>
-              <ChevronRight className="home-btn-arrow" />
-            </Link>
-            <Link to="/kaya-raya" className="home-btn home-alt">
-              <span className="home-alt-icon"><Dices /></span>
-              <span className="home-btn-label"><b>KAYA RAYA</b><small>Monopoli 3D lawan 3 bot</small></span>
               <ChevronRight className="home-btn-arrow" />
             </Link>
             <nav className="home-tiles" aria-label="Menu lainnya">

@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as KayaRayaRouteImport } from './routes/kaya-raya'
 import { Route as KunciJawabanRouteImport } from './routes/kunci-jawaban'
 import { Route as MainRouteImport } from './routes/main'
 import { Route as PeringkatRouteImport } from './routes/peringkat'
@@ -21,11 +20,6 @@ import { Route as RuangRoomIdRouteImport } from './routes/ruang.$roomId'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const KayaRayaRoute = KayaRayaRouteImport.update({
-  id: '/kaya-raya',
-  path: '/kaya-raya',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KunciJawabanRoute = KunciJawabanRouteImport.update({
@@ -61,7 +55,6 @@ const RuangRoomIdRoute = RuangRoomIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/kaya-raya': typeof KayaRayaRoute
   '/kunci-jawaban': typeof KunciJawabanRoute
   '/main': typeof MainRoute
   '/peringkat': typeof PeringkatRoute
@@ -71,7 +64,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/kaya-raya': typeof KayaRayaRoute
   '/kunci-jawaban': typeof KunciJawabanRoute
   '/main': typeof MainRoute
   '/peringkat': typeof PeringkatRoute
@@ -82,7 +74,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/kaya-raya': typeof KayaRayaRoute
   '/kunci-jawaban': typeof KunciJawabanRoute
   '/main': typeof MainRoute
   '/peringkat': typeof PeringkatRoute
@@ -94,7 +85,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/kaya-raya'
     | '/kunci-jawaban'
     | '/main'
     | '/peringkat'
@@ -104,7 +94,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/kaya-raya'
     | '/kunci-jawaban'
     | '/main'
     | '/peringkat'
@@ -114,7 +103,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/kaya-raya'
     | '/kunci-jawaban'
     | '/main'
     | '/peringkat'
@@ -125,7 +113,6 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  KayaRayaRoute: typeof KayaRayaRoute
   KunciJawabanRoute: typeof KunciJawabanRoute
   MainRoute: typeof MainRoute
   PeringkatRoute: typeof PeringkatRoute
@@ -140,13 +127,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/kaya-raya': {
-      id: '/kaya-raya'
-      path: '/kaya-raya'
-      fullPath: '/kaya-raya'
-      preLoaderRoute: typeof KayaRayaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kunci-jawaban': {
@@ -206,7 +186,6 @@ const RuangRouteWithChildren = RuangRoute._addFileChildren(RuangRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  KayaRayaRoute: KayaRayaRoute,
   KunciJawabanRoute: KunciJawabanRoute,
   MainRoute: MainRoute,
   PeringkatRoute: PeringkatRoute,

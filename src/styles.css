@@ -163,15 +163,6 @@
 }
 
 @layer components {
-  /* Kaya Raya keeps its original four seat colours (red, blue, green, yellow). */
-  .kaya-raya-theme {
-    --player-2: oklch(0.6 0.17 255);
-    --player-3: oklch(0.64 0.16 155);
-    --player-4: oklch(0.8 0.16 85);
-    --city-player-2: #2f7fe0;
-    --city-player-3: #25a862;
-    --city-player-4: #f2b51d;
-  }
   .game-ui-theme {
     --background: var(--menu-night);
     --foreground: var(--menu-ink);
