@@ -156,16 +156,17 @@ function loadLineup(): { seats: SeatSetup[]; avatars: number[] } | null {
 function BotLobby() {
   const saved = useGame((s) => s.botSetup);
   const running = useGame((s) => s.game.round > 1 || s.game.openingShown);
-  const [seats, setSeats] = useState<SeatSetup[]>(saved.seats ?? DEFAULT_SEATS);
+  // /main renders client-only (ssr: false), so browser storage is safe to read on first render.
+  const [stored] = useState(loadLineup);
+  const [seats, setSeats] = useState<SeatSetup[]>(stored?.seats ?? saved.seats ?? DEFAULT_SEATS);
   const [avatars, setAvatars] = useState<number[]>(() => {
     const mine = useGame.getState().avatar;
-    return DEFAULT_SEAT_AVATARS.map((a, i) => (i === 0 ? mine : a));
+    return stored?.avatars ?? DEFAULT_SEAT_AVATARS.map((a, i) => (i === 0 ? mine : a));
   });
   const [picking, setPicking] = useState<number | null>(null);
   useEffect(() => {
-    const stored = loadLineup();
-    if (stored) { setSeats(stored.seats); setAvatars(stored.avatars); }
-  }, []);
+    try { localStorage.setItem(LOBBY_KEY, JSON.stringify({ seats, avatars })); } catch { /* ignore */ }
+  }, [seats, avatars]);
   const humans = seats.filter((s) => !s.bot).length;
   const firstHumans = seats.every((s, i) => s.bot === i >= humans);
   const update = (i: number, patch: Partial<SeatSetup>) => setSeats(seats.map((s, k) => (k === i ? { ...s, ...patch } : s)));
@@ -178,7 +179,6 @@ function BotLobby() {
   const start = () => {
     sfx.click();
     const lineup = seats.map((s, i) => ({ ...s, name: s.name.trim() || (s.bot ? BOT_NAMES[i]! : humanName(i)) }));
-    try { localStorage.setItem(LOBBY_KEY, JSON.stringify({ seats: lineup, avatars })); } catch { /* ignore */ }
     const st = useGame.getState();
     useGame.setState({ seatAvatars: avatars });
     st.newGame({ ...st.botSetup, seats: lineup });

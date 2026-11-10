@@ -5,7 +5,7 @@ import type { LobbyMode } from "@/game/ui/Lobby";
 export const Route = createFileRoute("/main")({
   ssr: false,
   validateSearch: (search: Record<string, unknown>): { mode?: LobbyMode } =>
-    search.mode === "bersama" || search.mode === "bot" ? { mode: search.mode } : {},
+    search["mode"] === "bersama" || search["mode"] === "bot" ? { mode: search["mode"] } : {},
   head: () => ({
     meta: [
       { title: "Main 3D — 100 SUARA Bangun Bangsa" },
