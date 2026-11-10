@@ -43,3 +43,38 @@ describe("bot setup", () => {
     expect(botAnswer(s, req(2))).toBe(0);
   });
 });
+
+describe("susunan kursi Latihan vs Bot", () => {
+  const seat = (name: string, bot: boolean) => ({ name, bot });
+  it("1 Manusia + 4 Bot: kelima kursi bermain, hanya kursi 1 manusia", () => {
+    const s = createGame(5, 1, {
+      opponents: 4, level: "sedang", styles: ["hemat", "agresif", "seimbang", "seimbang"],
+      seats: [seat("Kamu", false), seat("Bot Joko", true), seat("Bot Budi", true), seat("Bot Sari", true), seat("Bot Rina", true)],
+    });
+    expect(s.players.every((p) => !p.absent)).toBe(true);
+    expect(s.players.map((p) => p.isBot)).toEqual([false, true, true, true, true]);
+    expect(s.players[1]!.name).toBe("Bot Joko");
+    expect(s.players[1]!.style).toBe("hemat");
+  });
+
+  it("2 Manusia + 3 Bot: dua kursi pertama dimainkan bergantian di perangkat ini", () => {
+    const s = createGame(5, 1, {
+      opponents: 4, level: "sedang", styles: ["seimbang"],
+      seats: [seat("Ani", false), seat("Budi", false), seat("Bot Budi", true), seat("Bot Sari", true), seat("Bot Rina", true)],
+    });
+    expect(s.players.filter((p) => !p.isBot).map((p) => p.name)).toEqual(["Ani", "Budi"]);
+  });
+
+  it("Simulasi 5 Bot bisa selesai tanpa pemain manusia", () => {
+    const s = createGame(9, 1, {
+      opponents: 4, level: "sedang", styles: ["seimbang", "agresif", "hemat", "seimbang", "seimbang"],
+      seats: [0, 1, 2, 3, 4].map((i) => seat(`Bot ${i}`, true)),
+    });
+    for (let i = 0; i < 6000 && !s.over; i++) {
+      const g = playTurn(s);
+      let r = g.next();
+      while (!r.done) r = g.next(botAnswer(s, r.value));
+    }
+    expect(s.over).toBe(true);
+  });
+});
