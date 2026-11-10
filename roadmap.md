@@ -4,3 +4,4 @@
 - [x] Tombol dadu lama, sedikit lebih kecil
 - [x] Getaran halus tombol dadu di HP
 - [ ] Ganti layar "Atur Lawan Bot" dengan layar "Latihan vs Bot" (formasi cepat, 5 kursi, avatar bisa diganti)
+- [ ] Layar "Main Bersama" (main bareng pemain lain) sesuai contoh, dengan alur yang disesuaikan
