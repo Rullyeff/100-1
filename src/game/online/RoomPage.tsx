@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
-import { ArrowLeft, Copy, LogOut, Play, Plus, RefreshCw, Users } from 'lucide-react';
+import { ArrowLeft, Copy, LogOut, Play, RefreshCw, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import logo from '@/assets/logo-100-suara.png';
@@ -9,9 +9,12 @@ import GameApp from '../GameApp';
 import { enterOnline, leaveOnline, useGame } from '../store';
 import { readRoom, roomOperation, startRoom, submitRoomAnswer } from './rooms.functions';
 import { AREAS } from '../sim/board';
+import { DEFAULT_SEAT_AVATARS, avatarSrc } from '../ui/avatars';
+
+const PLAYER_BG = ['bg-player-1', 'bg-player-2', 'bg-player-3', 'bg-player-4', 'bg-player-5'];
 
 type RoomData = Awaited<ReturnType<typeof readRoom>>;
-export function RoomPage({ roomId }: { roomId?: string }) {
+export function RoomPage({ roomId }: { roomId: string }) {
   const navigate = useNavigate();
   const read = useServerFn(readRoom);
   const operation = useServerFn(roomOperation);
@@ -19,9 +22,6 @@ export function RoomPage({ roomId }: { roomId?: string }) {
   const submit = useServerFn(submitRoomAnswer);
   const [userId, setUserId] = useState<string | null>(null);
   const [authReady, setAuthReady] = useState(false);
-  const [name, setName] = useState('');
-  useEffect(() => { const n = localStorage.getItem('player-name'); if (n) setName(n); }, []);
-  const [code, setCode] = useState('');
   const [data, setData] = useState<RoomData | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -37,6 +37,7 @@ export function RoomPage({ roomId }: { roomId?: string }) {
       if (next.runtime && next.runtime.revision < revision.current) return;
       current.current = next;
       setData(next);
+      useGame.setState({ seatAvatars: Array.from({ length: 5 }, (_, seat) => next.members.find(m => m.seat === seat)?.avatar ?? DEFAULT_SEAT_AVATARS[seat]!) });
       setConnected(true);
       const runtime = next.runtime;
       if (runtime) {
@@ -57,8 +58,6 @@ export function RoomPage({ roomId }: { roomId?: string }) {
         if (!anonError) return; // onAuthStateChange reloads
       }
       setUserId(session?.user.id ?? null);
-      const fullName = session?.user.user_metadata?.['full_name'];
-      if (typeof fullName === 'string') setName(fullName.slice(0, 24));
       setAuthReady(true);
     };
     void load();
@@ -99,37 +98,46 @@ export function RoomPage({ roomId }: { roomId?: string }) {
   if (data?.runtime) return <>
     <GameApp online />
     <div className="game-ui-theme pointer-events-auto fixed bottom-2 left-1/2 z-50 flex max-w-[95vw] -translate-x-1/2 items-center gap-2 rounded border border-border bg-background px-3 py-1 text-xs">
-      <Link to="/ruang" aria-label="Kembali ke ruang" title="Kembali ke ruang"><ArrowLeft className="size-4" /></Link>
+      <Link to="/main" search={{ mode: 'bersama' }} aria-label="Keluar dari permainan" title="Keluar dari permainan"><ArrowLeft className="size-4" /></Link>
       <span>Ruang {data.room.code}</span><span className={connected ? 'text-good' : 'text-bad'}>{busy ? 'Mengirim…' : connected ? 'Online' : 'Menghubungkan…'}</span>
       <Button variant="ghost" size="icon" className="size-6" aria-label="Sambung kembali" title="Sambung kembali" onClick={() => void refresh()}><RefreshCw className="size-3" /></Button>
     </div>
     {error && <div role="alert" className="game-ui-theme fixed bottom-12 left-1/2 z-50 w-[min(90vw,400px)] -translate-x-1/2 rounded border border-bad bg-background p-3 text-center text-sm">{error}</div>}
   </>;
-  return <main className="game-ui-theme min-h-dvh bg-background px-5 py-6">
-    <header className="mx-auto flex max-w-3xl items-center justify-between">
-      <Button asChild variant="ghost"><Link to="/"><ArrowLeft />Beranda</Link></Button>
-      {userId && <Button variant="ghost" size="icon" aria-label="Keluar akun" title="Keluar akun" onClick={() => void act(async () => { await supabase.auth.signOut(); setData(null); await navigate({ to: '/ruang', replace: true }); })}><LogOut /></Button>}
-    </header>
-    <section className="mx-auto max-w-lg py-6">
-      <img src={logo} width={900} height={574} alt="100 SUARA — Bangun Bangsa" className="mx-auto mb-4 w-44" />
-      <h1 className="mb-6 text-center font-display text-3xl text-gold">{data ? `Ruang ${data.room.code}` : 'Main Bersama'}</h1>
-      {!authReady ? <p className="text-center">Memuat…</p> : !userId ? <p className="text-center">Menyiapkan…</p> : data ? <div className="space-y-5">
-        <div className="flex items-center justify-between border-b border-border pb-3"><span className="flex items-center gap-2"><Users className="size-4" />{data.members.length}/5 pemain</span>
-          <Button variant="secondary" size="sm" onClick={() => void act(async () => { await navigator.clipboard.writeText(data.room.code); setCopied(true); })}><Copy />{copied ? 'Tersalin' : 'Salin kode'}</Button></div>
-        <ol className="divide-y divide-border">{Array.from({ length: 5 }, (_, seat) => {
-          const member = data.members.find(m => m.seat === seat);
-          return <li key={seat} className="flex items-center justify-between gap-3 py-3"><div><b>{member?.name ?? 'Menunggu pemain…'}</b><small className="block text-muted-foreground">{AREAS[seat]?.name}</small></div><span className="text-xs text-gold">{member?.user_id === data.room.host_id ? 'Pembuat ruang' : member?.user_id === userId ? 'Kamu' : ''}</span></li>;
-        })}</ol>
-        {data.room.host_id === userId && <Button className="w-full" disabled={busy || data.members.length < 2} onClick={() => void act(async () => { await start({ data: { roomId: data.room.id } }); await refresh(); })}><Play />Mulai permainan</Button>}
-        <p className="text-center text-sm text-muted-foreground">{data.room.host_id === userId ? 'Minimal 2 pemain. Kursi kosong dimainkan bot.' : 'Menunggu pembuat ruang memulai permainan.'}</p>
-        <Button variant="secondary" className="w-full" disabled={busy} onClick={() => void act(async () => { await operation({ data: { operation: 'leave', name: name || 'Pemain', roomId: data.room.id } }); await navigate({ to: '/ruang' }); })}><LogOut />Tinggalkan ruang</Button>
-      </div> : roomId ? <Button className="w-full" onClick={() => void refresh()}><RefreshCw />Sambung kembali</Button> : <div className="space-y-5">
-        <label className="block text-sm font-bold">Nama pemain<input aria-label="Nama pemain" maxLength={24} value={name} onChange={e => { setName(e.target.value); localStorage.setItem('player-name', e.target.value); }} className="mt-2 w-full rounded border border-border bg-secondary px-3 py-3 text-foreground" /></label>
-        <Button className="w-full" disabled={busy || !name.trim()} onClick={() => void act(async () => { const id = await operation({ data: { operation: 'create', name } }); if (id) await navigate({ to: '/ruang/$roomId', params: { roomId: id } }); })}><Plus />Buat ruang privat</Button>
-        <div className="border-t border-border pt-5"><label className="block text-sm font-bold">Kode ruang<input aria-label="Kode ruang" autoCapitalize="characters" maxLength={8} value={code} onChange={e => setCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))} className="mt-2 w-full rounded border border-border bg-secondary px-3 py-3 font-mono text-lg text-foreground" /></label>
-        <Button variant="secondary" className="mt-3 w-full" disabled={busy || !name.trim() || code.length !== 8} onClick={() => void act(async () => { const id = await operation({ data: { operation: 'join', name, code } }); if (id) await navigate({ to: '/ruang/$roomId', params: { roomId: id } }); })}><Users />Gabung ruang</Button></div>
-      </div>}
-      {error && <p role="alert" className="mt-4 text-center text-sm text-bad">{error}</p>}
+  const me = data?.members.find(m => m.user_id === userId);
+  const isHost = data?.room.host_id === userId;
+  return <main className="game-ui-theme lobby min-h-dvh bg-background">
+    <div className="lobby-topbar">
+      <Link to="/main" search={{ mode: 'bersama' }} className="lobby-icon-btn" aria-label="Kembali" title="Kembali"><ArrowLeft className="h-5 w-5" /></Link>
+      <img src={logo} width={900} height={574} alt="100 SUARA — Bangun Bangsa" className="w-28" />
+      {userId ? <button className="lobby-icon-btn" aria-label="Keluar akun" title="Keluar akun" onClick={() => void act(async () => { await supabase.auth.signOut(); setData(null); await navigate({ to: '/main', search: { mode: 'bersama' }, replace: true }); })}><LogOut className="h-5 w-5" /></button> : <span className="w-11" />}
+    </div>
+    <section className="mx-auto w-full max-w-3xl px-3 pb-8 pt-4 sm:px-5">
+      <div className="lobby-card">
+        <header className="lobby-card-head">
+          <span className="lobby-badge"><Users className="h-6 w-6" /></span>
+          <div className="min-w-0 flex-1">
+            <h1 className="font-display text-2xl leading-tight sm:text-3xl">{data ? `Ruang ${data.room.code}` : 'Main Bersama'}</h1>
+            <p className="text-sm text-muted-foreground">{data ? 'Bagikan kode ini ke teman. Kursi kosong dimainkan bot.' : 'Menyambungkan ke ruang…'}</p>
+          </div>
+          {data && <button className="lobby-join" onClick={() => void act(async () => { await navigator.clipboard.writeText(data.room.code); setCopied(true); })}><Copy className="h-4 w-4" />{copied ? 'Tersalin' : 'Salin kode'}</button>}
+        </header>
+        {!authReady || !userId ? <p className="py-6 text-center">Memuat…</p> : data ? <div className="space-y-4">
+          <div className="lobby-label flex items-center gap-2"><Users className="size-4" />{data.members.length}/5 pemain</div>
+          <ol className="space-y-2">{Array.from({ length: 5 }, (_, seat) => {
+            const member = data.members.find(m => m.seat === seat);
+            return <li key={seat} className={`lobby-seat ${member ? '' : 'opacity-60'}`}>
+              <span className={`lobby-avatar ${PLAYER_BG[seat]}`}><img src={member ? avatarSrc(member.avatar, seat) : avatarSrc(undefined, seat)} alt="" width={96} height={96} className={member ? '' : 'grayscale'} /></span>
+              <div className="min-w-0 flex-1"><b className="block truncate">{member?.name ?? 'Menunggu pemain… (bot)'}</b><small className="text-muted-foreground">{AREAS[seat]?.name} · Start {seat + 1}</small></div>
+              <span className="text-xs font-semibold text-gold">{member?.user_id === data.room.host_id ? 'Pembuat ruang' : member?.user_id === userId ? 'Kamu' : ''}</span>
+            </li>;
+          })}</ol>
+          {isHost && <button className="btn-gold flex w-full items-center justify-center gap-2 py-3 text-xl disabled:opacity-50" disabled={busy || data.members.length < 2} onClick={() => void act(async () => { await start({ data: { roomId: data.room.id } }); await refresh(); })}><Play className="h-5 w-5" />Mulai Permainan</button>}
+          <p className="text-center text-sm text-muted-foreground">{isHost ? (data.members.length < 2 ? 'Tunggu minimal 1 teman bergabung untuk mulai.' : 'Semua siap? Mulai saat kamu mau.') : 'Menunggu pembuat ruang memulai permainan.'}</p>
+          <button className="w-full rounded-xl border border-border py-2.5 font-semibold hover:bg-muted disabled:opacity-50" disabled={busy} onClick={() => void act(async () => { await operation({ data: { operation: 'leave', name: me?.name || 'Pemain', roomId: data.room.id } }); await navigate({ to: '/main', search: { mode: 'bersama' } }); })}><LogOut className="mr-2 inline size-4" />Tinggalkan ruang</button>
+        </div> : <button className="lobby-create justify-center" onClick={() => void refresh()}><RefreshCw className="h-4 w-4" />Sambung kembali</button>}
+        {error && <p role="alert" className="mt-4 text-center text-sm text-bad">{error}</p>}
+      </div>
     </section>
   </main>;
 }
