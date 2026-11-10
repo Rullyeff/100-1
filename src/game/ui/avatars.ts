@@ -42,7 +42,7 @@ export const DEFAULT_SEAT_AVATARS = [4, 6, 1, 5, 3];
  * The ten avatars offered in the picker (indexes into AVATAR_LIST): the five Beranda area
  * characters first, then five more in the same art style. Other indexes still render if stored.
  */
-export const PICKER_AVATARS = [1, 5, 3, 4, 6, 2, 7, 8, 9, 21];
+export const PICKER_AVATARS = [1, 5, 3, 4, 6, 14, 15, 20, 17, 19];
 
 export const avatarSrc = (index: number | undefined, seat: number) =>
   AVATAR_LIST[index ?? -1] ?? AVATAR_LIST[DEFAULT_SEAT_AVATARS[seat] ?? 0]!;
