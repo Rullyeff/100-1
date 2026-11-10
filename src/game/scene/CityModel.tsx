@@ -28,8 +28,8 @@ export function CityModel({ url, width, depth, height }: { url: string; width: n
 }
 /** Decorative city models must never take the whole board down if one fails to load. */
 export class ModelBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
+  override state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  componentDidCatch(error: unknown) { console.warn("City model failed to load", error); }
-  render() { return this.state.failed ? null : this.props.children; }
+  override componentDidCatch(error: unknown) { console.warn("City model failed to load", error); }
+  override render() { return this.state.failed ? null : this.props.children; }
 }
