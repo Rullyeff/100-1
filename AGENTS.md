@@ -35,7 +35,7 @@ use the editor.
 ## Game architecture
 
 - Online rooms use authenticated membership and server-authoritative, versioned turn-boundary replay; private RNG, decks and answer transcripts never reach clients, so reconnect does not depend on a host browser.
-- Online room metadata and seats are member-readable with RLS; runtime is service-only and actions use revision compare-and-swap to reject duplicate or stale submissions.
+- Online room metadata and seats are member-readable with RLS; runtime is reachable only via SECURITY DEFINER RPCs gated by the `ONLINE_ROOM_SECRET` hash in `online_server_key` (no service role needed, so non-Lovable hosts work; Lovable hosting re-registers the hash), with revision compare-and-swap rejecting stale submissions.
 - Game UI inherits the site palette inside `game-ui-theme`, while the player top bar uses its own board-aligned semantic tokens; scoped tokens keep scene materials and printed board art isolated from interface theme changes.
 
 - Game rules live in `src/game/sim/` as pure TypeScript (no React/three); the turn flow is a generator (`playTurn`) that yields requests, so the UI controller (`src/game/store.ts`) and vitest share one rule path.
@@ -56,5 +56,5 @@ use the editor.
 - Official non-quiz cards are attributed data in `sim/official-cards.json`; the generator draws shuffled subdecks without replacement and yields private voting/debate requests so bots, UI, and tests share one resolution path.
 - Vote origins travel with player hands and plot investments; all rewards, transfers and returns use the simulation helpers to conserve the finite per-area supply.
 - Site pages (Beranda, Tentang, Kunci Jawaban, Peringkat) come from the 100-suara-bangun-bangsa repo; their data helpers live in src/site/ and styles in src/site.css, separate from the 3D game in src/game/ which is served at /main.
-- Offline bot setup lives in GameState via createGame's setup; the `/main` lobby (`src/game/ui/Lobby.tsx`, tabs via `?mode=bersama|bot`) passes an explicit five-seat human/bot lineup, while the older opponent-count path marks unused seats absent so the 5-area board and seat=index mapping stay intact.
+- Offline bot setup lives in GameState via createGame's setup; the `/main` lobby (`src/game/ui/Lobby.tsx`, tabs via `?mode=bersama|bot`; Main Bersama offers online or same-device, both seat lineups share one component) passes an explicit five-seat human/bot lineup, while the older opponent-count path marks unused seats absent so the 5-area board and seat=index mapping stay intact.
 - Avatars are indexes into the append-only `AVATAR_LIST` (`src/game/ui/avatars.ts`); seats store them (browser storage offline, `online_members.avatar` online), and online rooms take a preferred seat that falls back to the next free one.

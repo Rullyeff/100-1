@@ -16,6 +16,7 @@ import { Route as PeringkatRouteImport } from './routes/peringkat'
 import { Route as RuangRouteImport } from './routes/ruang'
 import { Route as TentangRouteImport } from './routes/tentang'
 import { Route as RuangRoomIdRouteImport } from './routes/ruang.$roomId'
+import { Route as ApiPublicRoomKeySyncRouteImport } from './routes/api/public/room-key-sync'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const RuangRoomIdRoute = RuangRoomIdRouteImport.update({
   path: '/$roomId',
   getParentRoute: () => RuangRoute,
 } as any)
+const ApiPublicRoomKeySyncRoute = ApiPublicRoomKeySyncRouteImport.update({
+  id: '/api/public/room-key-sync',
+  path: '/api/public/room-key-sync',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/ruang': typeof RuangRouteWithChildren
   '/tentang': typeof TentangRoute
   '/ruang/$roomId': typeof RuangRoomIdRoute
+  '/api/public/room-key-sync': typeof ApiPublicRoomKeySyncRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/ruang': typeof RuangRouteWithChildren
   '/tentang': typeof TentangRoute
   '/ruang/$roomId': typeof RuangRoomIdRoute
+  '/api/public/room-key-sync': typeof ApiPublicRoomKeySyncRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/ruang': typeof RuangRouteWithChildren
   '/tentang': typeof TentangRoute
   '/ruang/$roomId': typeof RuangRoomIdRoute
+  '/api/public/room-key-sync': typeof ApiPublicRoomKeySyncRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/ruang'
     | '/tentang'
     | '/ruang/$roomId'
+    | '/api/public/room-key-sync'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/ruang'
     | '/tentang'
     | '/ruang/$roomId'
+    | '/api/public/room-key-sync'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/ruang'
     | '/tentang'
     | '/ruang/$roomId'
+    | '/api/public/room-key-sync'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   PeringkatRoute: typeof PeringkatRoute
   RuangRoute: typeof RuangRouteWithChildren
   TentangRoute: typeof TentangRoute
+  ApiPublicRoomKeySyncRoute: typeof ApiPublicRoomKeySyncRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RuangRoomIdRouteImport
       parentRoute: typeof RuangRoute
     }
+    '/api/public/room-key-sync': {
+      id: '/api/public/room-key-sync'
+      path: '/api/public/room-key-sync'
+      fullPath: '/api/public/room-key-sync'
+      preLoaderRoute: typeof ApiPublicRoomKeySyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -191,6 +211,7 @@ const rootRouteChildren: RootRouteChildren = {
   PeringkatRoute: PeringkatRoute,
   RuangRoute: RuangRouteWithChildren,
   TentangRoute: TentangRoute,
+  ApiPublicRoomKeySyncRoute: ApiPublicRoomKeySyncRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

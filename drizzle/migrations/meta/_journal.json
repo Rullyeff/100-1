@@ -15,6 +15,13 @@
       "when": 1794278014297,
       "tag": "0001_online_server_key_rpcs",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794278636483,
+      "tag": "0002_online_server_key_min_length",
+      "breakpoints": true
     }
   ]
 }

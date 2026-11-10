@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowRight, Bot, Briefcase, Check, GraduationCap, HeartHandshake, Home, KeyRound, Landmark, Leaf, LogIn,
-  Play, Plus, ShieldCheck, User, Users, Volume2, VolumeX, X,
+  Play, Plus, ShieldCheck, Smartphone, User, Users, Volume2, VolumeX, Wifi, X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
@@ -29,10 +29,18 @@ const humanName = (seat: number) => (seat === 0 ? "Kamu" : `Pemain ${seat + 1}`)
 const isDefaultName = (name: string, seat: number) =>
   !name.trim() || name === humanName(seat) || name === BOT_NAMES[seat] || name === DEFAULT_SEATS[seat]?.name;
 
-const FORMATIONS: { id: string; label: string; humans: number; icon: typeof Bot }[] = [
+type Formation = { id: string; label: string; humans: number; icon: typeof Bot };
+const FORMATIONS: Formation[] = [
   { id: "sim", label: "Simulasi 5 Bot", humans: 0, icon: Bot },
   { id: "1v4", label: "1 Manusia + 4 Bot", humans: 1, icon: User },
   { id: "2v3", label: "2 Manusia + 3 Bot", humans: 2, icon: Users },
+  { id: "5h", label: "5 Manusia bergantian", humans: 5, icon: Users },
+];
+/** Same-device play: at least two people pass the device around. */
+const LOCAL_FORMATIONS: Formation[] = [
+  { id: "2v3", label: "2 Manusia + 3 Bot", humans: 2, icon: Users },
+  { id: "3v2", label: "3 Manusia + 2 Bot", humans: 3, icon: Users },
+  { id: "4v1", label: "4 Manusia + 1 Bot", humans: 4, icon: Users },
   { id: "5h", label: "5 Manusia bergantian", humans: 5, icon: Users },
 ];
 
@@ -45,14 +53,16 @@ export function applyFormation(seats: SeatSetup[], humans: number): SeatSetup[] 
   });
 }
 
-const LOBBY_KEY = "bot-lobby-v2";
+const LOBBY_KEYS = { quick: "bot-lobby-v2", local: "local-lobby-v1" } as const;
+type SeatVariant = keyof typeof LOBBY_KEYS;
 
-/** Pre-game screen on /main: online rooms ("Main Bersama") or the practice lineup ("Latihan vs Bot"). */
+/** Pre-game screen on /main: "Main Bersama" (online or one shared device) or "Quickmatch" against bots. */
 export function Lobby() {
   const open = useGame((s) => s.setupOpen);
   const search = useSearch({ strict: false }) as { mode?: LobbyMode };
   const navigate = useNavigate();
   const [mode, setMode] = useState<LobbyMode>(search.mode ?? "bot");
+  const [together, setTogether] = useState<"online" | "local">("online");
   useEffect(() => { if (search.mode) setMode(search.mode); }, [search.mode]);
   useEffect(() => {
     const raw = localStorage.getItem("my-avatar-v2");
@@ -69,7 +79,18 @@ export function Lobby() {
     <div className="lobby pointer-events-auto absolute inset-0 z-50 overflow-y-auto" role="dialog" aria-label="Pilih mode permainan">
       <LobbyTopBar mode={mode} onMode={pick} />
       <div className="mx-auto w-full max-w-5xl px-3 pb-8 pt-4 sm:px-5 sm:pt-10">
-        {mode === "bot" ? <BotLobby /> : <TogetherLobby />}
+        {mode === "bot" ? <BotLobby key="quick" variant="quick" /> : <>
+          <div className="mb-3 grid grid-cols-2 gap-2" role="radiogroup" aria-label="Cara main bersama">
+            {([["online", Wifi, "Beda perangkat", "Online dengan kode ruang"], ["local", Smartphone, "Satu perangkat", "Bergantian di HP/laptop ini"]] as const).map(([id, Icon, label, hint]) => (
+              <button key={id} type="button" role="radio" aria-checked={together === id} className={cn("lobby-option py-3", together === id && "is-on")}
+                onClick={() => { sfx.click(); setTogether(id); }}>
+                <Icon className="h-5 w-5 shrink-0" />
+                <span className="text-left leading-tight"><b className="block">{label}</b><span className="text-xs opacity-80">{hint}</span></span>
+              </button>
+            ))}
+          </div>
+          {together === "online" ? <TogetherLobby /> : <BotLobby key="local" variant="local" />}
+        </>}
       </div>
     </div>
   );
@@ -86,7 +107,7 @@ function LobbyTopBar({ mode, onMode }: { mode: LobbyMode; onMode: (m: LobbyMode)
           <Users className="h-4 w-4" /> Main Bersama
         </button>
         <button role="tab" aria-selected={mode === "bot"} className={cn("lobby-tab", mode === "bot" && "is-on")} onClick={() => onMode("bot")}>
-          <Bot className="h-4 w-4" /> Latihan vs Bot
+          <Bot className="h-4 w-4" /> Quickmatch
         </button>
       </div>
       <div className="flex gap-2">
@@ -146,28 +167,30 @@ function AvatarPicker({ value, onPick, onClose }: { value: number; onPick: (i: n
   );
 }
 
-function loadLineup(): { seats: SeatSetup[]; avatars: number[] } | null {
+function loadLineup(variant: SeatVariant): { seats: SeatSetup[]; avatars: number[] } | null {
   try {
-    const raw = JSON.parse(localStorage.getItem(LOBBY_KEY) ?? "null") as { seats?: SeatSetup[]; avatars?: number[] } | null;
+    const raw = JSON.parse(localStorage.getItem(LOBBY_KEYS[variant]) ?? "null") as { seats?: SeatSetup[]; avatars?: number[] } | null;
     if (raw?.seats?.length === 5 && raw.avatars?.length === 5) return { seats: raw.seats, avatars: raw.avatars };
   } catch { /* ignore */ }
   return null;
 }
 
-function BotLobby() {
+function BotLobby({ variant }: { variant: SeatVariant }) {
+  const local = variant === "local";
+  const formations = local ? LOCAL_FORMATIONS : FORMATIONS;
   const saved = useGame((s) => s.botSetup);
   const running = useGame((s) => s.game.round > 1 || s.game.openingShown);
   // /main renders client-only (ssr: false), so browser storage is safe to read on first render.
-  const [stored] = useState(loadLineup);
-  const [seats, setSeats] = useState<SeatSetup[]>(stored?.seats ?? saved.seats ?? DEFAULT_SEATS);
+  const [stored] = useState(() => loadLineup(variant));
+  const [seats, setSeats] = useState<SeatSetup[]>(stored?.seats ?? (local ? applyFormation(DEFAULT_SEATS, 2) : saved.seats ?? DEFAULT_SEATS));
   const [avatars, setAvatars] = useState<number[]>(() => {
     const mine = useGame.getState().avatar;
     return stored?.avatars ?? DEFAULT_SEAT_AVATARS.map((a, i) => (i === 0 && mine >= 0 ? mine : a));
   });
   const [picking, setPicking] = useState<number | null>(null);
   useEffect(() => {
-    try { localStorage.setItem(LOBBY_KEY, JSON.stringify({ seats, avatars })); } catch { /* ignore */ }
-  }, [seats, avatars]);
+    try { localStorage.setItem(LOBBY_KEYS[variant], JSON.stringify({ seats, avatars })); } catch { /* ignore */ }
+  }, [seats, avatars, variant]);
   const humans = seats.filter((s) => !s.bot).length;
   const firstHumans = seats.every((s, i) => s.bot === i >= humans);
   const update = (i: number, patch: Partial<SeatSetup>) => setSeats(seats.map((s, k) => (k === i ? { ...s, ...patch } : s)));
@@ -185,13 +208,15 @@ function BotLobby() {
     st.newGame({ ...st.botSetup, seats: lineup });
   };
   return (
-    <LobbyCard icon={<Bot className="h-6 w-6" />} title="Latihan vs Bot" text="Lima kursi, lima area. Isi tiap kursi dengan pemain di perangkat ini atau Bot otomatis.">
+    <LobbyCard icon={local ? <Smartphone className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
+      title={local ? "Main Bersama · Satu Perangkat" : "Quickmatch"}
+      text={local ? "Dua sampai lima orang bergantian di satu perangkat. Kursi yang tidak dipakai dimainkan Bot." : "Langsung main. Lima kursi, lima area: isi tiap kursi dengan pemain di perangkat ini atau Bot otomatis."}>
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
         <div className="space-y-4">
           <div>
             <div className="lobby-label">Formasi cepat</div>
             <div className="grid grid-cols-2 gap-2">
-              {FORMATIONS.map((f) => (
+              {formations.map((f) => (
                 <button key={f.id} type="button" className={cn("lobby-option", firstHumans && humans === f.humans && "is-on")}
                   onClick={() => { sfx.click(); setSeats(applyFormation(seats, f.humans)); }}>
                   <f.icon className="h-4 w-4 shrink-0" /> <span>{f.label}</span>
@@ -199,7 +224,7 @@ function BotLobby() {
               ))}
             </div>
           </div>
-          <button className="btn-gold flex w-full items-center justify-center gap-2 py-3 text-xl" onClick={start}>
+          <button className="btn-gold flex w-full items-center justify-center gap-2 py-3 text-xl disabled:opacity-50" disabled={local && humans < 2} onClick={start}>
             <Play className="h-5 w-5" /> {running ? "Mulai Ulang" : "Mulai Permainan"}
           </button>
           {running && (
@@ -208,7 +233,7 @@ function BotLobby() {
             </button>
           )}
           <p className="text-sm text-muted-foreground">
-            {humans > 1 ? "Pemain manusia bergantian di satu perangkat. " : ""}Dadu dan jawaban bot diproses otomatis oleh sistem.
+            {local && humans < 2 ? "Pilih minimal 2 kursi Manusia untuk main bersama. " : humans > 1 ? "Pemain manusia bergantian di satu perangkat; tanda GILIRANMU menunjukkan siapa yang main. " : ""}Dadu dan jawaban bot diproses otomatis oleh sistem.
           </p>
         </div>
         <ol className="space-y-2">
