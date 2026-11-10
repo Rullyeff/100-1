@@ -11,7 +11,7 @@ const hotel = { url: hotelUrl };
 import towerUrl from "@/assets/models/city-tower.glb?url";
 const tower = { url: towerUrl };
 import { TILE_H } from "./layout";
-import { CityModel } from "./CityModel";
+import { CityModel, ModelBoundary } from "./CityModel";
 import { cityColor } from "./cityPalette";
 import { CITY_MOTION, growthScale } from "./cityMotion";
 import { kick } from "../fx";
@@ -105,7 +105,7 @@ export function Buildings({ owner, level }: { owner: number; level: number }) {
         </mesh>
         <group ref={building} position={[0, 0.07, 0]}>
           <Suspense fallback={null}>
-            <CityModel url={asset.url} width={level === 1 ? 0.88 : 0.8} depth={0.67} height={height} />
+            <ModelBoundary><CityModel url={asset.url} width={level === 1 ? 0.88 : 0.8} depth={0.67} height={height} /></ModelBoundary>
           </Suspense>
           {level >= 2 && <mesh geometry={box} position={[0, height * 0.54, 0.342]} scale={[0.53, height * 0.48, 0.018]}>
             <meshStandardMaterial ref={glass} color={palette.glass} emissive={palette.light} emissiveIntensity={0.16} metalness={0.35} roughness={0.2} />

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { Component, useMemo, type ReactNode } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -25,4 +25,11 @@ export function CityModel({ url, width, depth, height }: { url: string; width: n
     return root;
   }, [scene, width, depth, height]);
   return <primitive object={model} />;
+}
+/** Decorative city models must never take the whole board down if one fails to load. */
+export class ModelBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch(error: unknown) { console.warn("City model failed to load", error); }
+  render() { return this.state.failed ? null : this.props.children; }
 }
