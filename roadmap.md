@@ -6,6 +6,6 @@
 - [x] Ganti layar "Atur Lawan Bot" dengan layar "Latihan vs Bot" (formasi cepat, 5 kursi, avatar bisa diganti)
 - [x] Layar "Main Bersama" (main bareng pemain lain) sesuai contoh, dengan alur yang disesuaikan
 - [x] Samakan gambar avatar di Beranda dengan avatar di game
-- [ ] Main Bersama berjalan di situs Vercel (kunci ruang online)
-- [ ] Ganti nama tab "Latihan vs Bot" menjadi "Quickmatch"
-- [ ] Pastikan bisa main bersama di 1 perangkat (bergantian) dan online beda perangkat
+- [x] Main Bersama berjalan di situs Vercel (kunci ruang online)
+- [x] Ganti nama tab "Latihan vs Bot" menjadi "Quickmatch"
+- [x] Pastikan bisa main bersama di 1 perangkat (bergantian) dan online beda perangkat
