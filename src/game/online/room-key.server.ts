@@ -6,7 +6,7 @@
 export async function syncRoomKey(): Promise<{ ok: boolean; reason?: string }> {
   const secret = process.env['ONLINE_ROOM_SECRET'];
   if (!secret) return { ok: false, reason: 'missing-secret' };
-  if (secret.length < 32) return { ok: false, reason: 'secret-too-short' };
+  if (secret.length < 12) return { ok: false, reason: 'secret-too-short' };
   if (!process.env['SUPABASE_SERVICE_ROLE_KEY']) return { ok: false, reason: 'no-service-role' };
   const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(secret));
   const hash = Array.from(new Uint8Array(bytes), (b) => b.toString(16).padStart(2, '0')).join('');
