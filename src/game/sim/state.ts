@@ -48,6 +48,15 @@ export interface BotSetup {
   level: BotLevel;
   /** Style per bot seat 1..4. */
   styles: BotStyle[];
+  /**
+   * Explicit five-seat lineup from the practice lobby: every seat plays, each is a
+   * person on this device or a bot. When set, `opponents` and `humanCount` are ignored.
+   */
+  seats?: SeatSetup[];
+}
+export interface SeatSetup {
+  name: string;
+  bot: boolean;
 }
 
 export interface GameState {
@@ -130,7 +139,17 @@ export function createGame(seed = Date.now() >>> 0, humanCount = 1, setup?: BotS
     rng: seed || 1,
     lastDice: 1,
   };
-  if (setup) {
+  if (setup?.seats) {
+    s.botLevel = setup.level;
+    let botIndex = 0;
+    s.players.forEach((p) => {
+      const seat = setup.seats![p.id];
+      if (!seat) return;
+      p.name = seat.name.trim().slice(0, 24) || p.name;
+      p.isBot = seat.bot;
+      if (p.isBot) p.style = setup.styles[botIndex++] ?? "seimbang";
+    });
+  } else if (setup) {
     s.botLevel = setup.level;
     const seats = humanCount + Math.max(1, Math.min(PLAYER_NAMES.length - humanCount, setup.opponents));
     s.players.forEach((p) => {
