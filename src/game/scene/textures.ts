@@ -2,8 +2,10 @@ import * as THREE from "three";
 import { AREAS, GATE_BASE, GATE_LEN, GROUP_COLORS, type Tile } from "../sim/board";
 import { CELL, PENT_R, RING_U, TABLE_HALF, armAxes, gapSpot, tileXform } from "./layout";
 
-import boardBackground from "@/assets/board-background.jpg.asset.json";
-import logoAsset from "@/assets/logo-100-suara.png.asset.json";
+import boardBackgroundUrl from "@/assets/board-background.jpg";
+const boardBackground = { url: boardBackgroundUrl };
+import logoUrl from "@/assets/logo-100-suara.png";
+const logoAsset = { url: logoUrl };
 
 const images = new Map<string, Promise<HTMLImageElement>>();
 /** Loads a same-origin image once; canvas textures repaint with it when it resolves. */

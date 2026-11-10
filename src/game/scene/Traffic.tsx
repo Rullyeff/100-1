@@ -2,9 +2,11 @@ import { Suspense, useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import taxi from "@/assets/models/city-taxi.glb.asset.json";
-import sedan from "@/assets/models/city-sedan.glb.asset.json";
-import { CityModel } from "./CityModel";
+import taxiUrl from "@/assets/models/city-taxi.glb?url";
+const taxi = { url: taxiUrl };
+import sedanUrl from "@/assets/models/city-sedan.glb?url";
+const sedan = { url: sedanUrl };
+import { CityModel, ModelBoundary } from "./CityModel";
 import { cityColor } from "./cityPalette";
 import { CITY_MOTION, trafficPose } from "./cityMotion";
 import { useReducedMotion } from "./useReducedMotion";
@@ -86,7 +88,7 @@ export function Traffic() {
     </group>)}
     <Suspense fallback={null}>
       {Array.from({ length: count }, (_, index) => <group key={index} ref={(node) => { vehicles.current[index] = node; }} name={`city-car-${index}`}>
-        <CityModel url={index % 2 === 0 ? taxi.url : sedan.url} width={0.18} depth={0.36} height={0.16} />
+        <ModelBoundary><CityModel url={index % 2 === 0 ? taxi.url : sedan.url} width={0.18} depth={0.36} height={0.16} /></ModelBoundary>
         {[-0.06, 0.06].map((x) => <group key={x}>
           <mesh geometry={lampGeo} material={headMat} position={[x, 0.07, 0.18]} />
           <mesh geometry={lampGeo} material={tailMat} position={[x, 0.07, -0.18]} scale={0.8} />
