@@ -135,7 +135,7 @@ function AvatarPicker({ value, onPick, onClose }: { value: number; onPick: (i: n
           {PICKER_AVATARS.map((i) => { const src = AVATAR_LIST[i]!; return (
             <button key={i} type="button" aria-label={`Avatar ${i + 1}`} aria-pressed={value === i}
               onClick={() => { sfx.click(); onPick(i); onClose(); }}
-              className={cn("relative aspect-square overflow-hidden rounded-full border-2 transition-transform hover:scale-105", value === i ? "border-gold" : "border-transparent opacity-80")}>
+              className={cn("relative aspect-square overflow-hidden rounded-full border-2 bg-foreground transition-transform hover:scale-105", value === i ? "border-gold" : "border-transparent opacity-80")}>
               <img src={src} alt="" width={64} height={64} className="h-full w-full object-cover" />
               {value === i && <Check className="absolute right-0 top-0 h-4 w-4 rounded-full bg-gold p-0.5 text-primary-foreground" />}
             </button>
