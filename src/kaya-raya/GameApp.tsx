@@ -24,7 +24,7 @@ export default function GameApp() {
     startIfIdle();
   }, []);
   return (
-    <main className="fixed inset-0 overflow-hidden bg-background">
+    <main className="kaya-raya-theme fixed inset-0 overflow-hidden bg-background">
       <h1 className="sr-only">Kaya Raya — game monopoli 3D</h1>
       <SceneBoundary>
         <GameScene />
