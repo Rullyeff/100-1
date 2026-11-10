@@ -2,6 +2,7 @@
 import { create } from "zustand";
 import { botAnswer } from "./sim/bot";
 import { playTurn, type Req, type Tone } from "./sim/engine";
+import { DEFAULT_SEAT_AVATARS } from "./ui/avatars";
 import { createGame, rollDie, type BotSetup, type GameState } from "./sim/state";
 import { sfx } from "./audio";
 import { fx, kick } from "./fx";
@@ -52,6 +53,8 @@ interface Store {
   botSetup: BotSetup;
   avatar: number;
   setAvatar: (i: number) => void;
+  /** Avatar index per seat (offline lobby choices, or online members' picks). */
+  seatAvatars: number[];
   setupOpen: boolean;
   openSetup: () => void;
   newGame: (setup?: BotSetup) => void;
@@ -73,6 +76,15 @@ const PACE = {
   notice: 2800,
   betweenTurns: 1300,
 };
+
+/** Practice lobby default: you plus four bots. */
+export const DEFAULT_SEATS = [
+  { name: "Kamu", bot: false },
+  { name: "Bot Joko", bot: true },
+  { name: "Bot Budi", bot: true },
+  { name: "Bot Sari", bot: true },
+  { name: "Bot Rina", bot: true },
+];
 
 let generation = 0;
 let resolver: ((v: unknown) => void) | null = null;
@@ -96,7 +108,13 @@ export const useGame = create<Store>((set, get) => ({
   paused: false,
   avatar: 0,
   setAvatar: (i) => { set({ avatar: i }); try { localStorage.setItem("my-avatar", String(i)); } catch { /* ignore */ } },
-  botSetup: { opponents: 4, level: "sedang", styles: ["seimbang", "agresif", "hemat", "seimbang"] },
+  botSetup: {
+    opponents: 4,
+    level: "sedang",
+    styles: ["seimbang", "agresif", "hemat", "seimbang", "seimbang"],
+    seats: DEFAULT_SEATS,
+  },
+  seatAvatars: [...DEFAULT_SEAT_AVATARS],
   setupOpen: false,
   openSetup: () => { if (!get().online) set({ setupOpen: true, paused: true }); },
   answer: (value) => {
@@ -115,7 +133,8 @@ export const useGame = create<Store>((set, get) => ({
     resolver = null;
     const botSetup = setup ?? get().botSetup;
     const g = createGame((Math.random() * 2 ** 31) >>> 0, 1, botSetup);
-    set({ game: g, botSetup, setupOpen: false, awaiting: null, notice: null, banner: null, rolling: false, paused: false });
+    const firstHuman = g.players.findIndex((p) => !p.isBot && !p.absent);
+    set({ game: g, botSetup, mySeat: Math.max(0, firstHuman), setupOpen: false, awaiting: null, notice: null, banner: null, rolling: false, paused: false });
     void runGame();
   },
   toggleFast: () => set({ fast: !get().fast }),
