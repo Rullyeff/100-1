@@ -1,5 +1,4 @@
-import { createFileRoute, Outlet, useMatch } from '@tanstack/react-router';
-import { RoomPage } from '@/game/online/RoomPage';
+import { createFileRoute, Navigate, Outlet, useMatch } from '@tanstack/react-router';
 export const Route = createFileRoute('/ruang')({
   ssr: false,
   head: () => ({ meta: [
@@ -13,5 +12,5 @@ export const Route = createFileRoute('/ruang')({
 });
 function Rooms() {
   const child = useMatch({ from: '/ruang/$roomId', shouldThrow: false });
-  return child ? <Outlet /> : <RoomPage />;
+  return child ? <Outlet /> : <Navigate to="/main" search={{ mode: 'bersama' }} replace />;
 }
