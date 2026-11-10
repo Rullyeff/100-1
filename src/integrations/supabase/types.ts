@@ -99,6 +99,21 @@ export type Database = {
           },
         ]
       }
+      online_server_key: {
+        Row: {
+          hash: string
+          id: boolean
+        }
+        Insert: {
+          hash: string
+          id?: boolean
+        }
+        Update: {
+          hash?: string
+          id?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -119,6 +134,27 @@ export type Database = {
         Returns: string
       }
       leave_online_room: { Args: { p_room: string }; Returns: undefined }
+      online_room_begin: {
+        Args: { p_checkpoint: Json; p_room: string; p_secret: string }
+        Returns: undefined
+      }
+      online_runtime_get: {
+        Args: { p_room: string; p_secret: string }
+        Returns: {
+          checkpoint: Json
+          revision: number
+        }[]
+      }
+      online_runtime_save: {
+        Args: {
+          p_checkpoint: Json
+          p_revision: number
+          p_room: string
+          p_secret: string
+        }
+        Returns: boolean
+      }
+      online_server_ok: { Args: { p_secret: string }; Returns: boolean }
       start_online_room: {
         Args: { p_checkpoint: Json; p_room: string; p_user: string }
         Returns: undefined
