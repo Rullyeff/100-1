@@ -946,7 +946,7 @@
   .game-ui-theme .game-dialog .paper-card { max-height: calc(100dvh - 16px); }
 }
 
-/* Pre-game lobby (Main Bersama / Latihan vs Bot) */
+/* Pre-game lobby (Main Bersama / Quickmatch) */
 .lobby { background: color-mix(in oklab, var(--background) 72%, transparent); backdrop-filter: blur(10px); }
 .lobby-topbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; }
 .lobby-icon-btn { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: color-mix(in oklab, var(--background) 70%, transparent); color: var(--gold); transition: background 120ms ease; }
