@@ -5,13 +5,6 @@ import { createGame } from '../sim/state';
 import { assertActor, resume, validateAnswer, type Checkpoint } from './runner';
 import type { Json } from '@/integrations/supabase/types';
 
-/** Server-only key proving room writes come from this app's server, not a player's browser. */
-function serverSecret() {
-  const secret = process.env['ONLINE_ROOM_SECRET'];
-  if (!secret) throw new Error('Server belum diatur: kunci ruang online (ONLINE_ROOM_SECRET) belum diisi');
-  return secret;
-}
-
 const roomInput = z.object({ roomId: z.string().uuid() });
 export const roomOperation = createServerFn({ method: 'POST' })
   .middleware([requireSupabaseAuth])
@@ -42,7 +35,8 @@ export const readRoom = createServerFn({ method: 'POST' })
     const me = members.find(m => m.user_id === context.userId);
     if (!me) throw new Error('Bukan anggota ruang');
     if (room.status !== 'playing') return { room, members, seat: me.seat, runtime: null };
-    const { data: rows } = await context.supabase.rpc('online_runtime_get', { p_secret: serverSecret(), p_room: room.id });
+    const { withRoomKey } = await import('./room-key.server');
+    const { data: rows } = await withRoomKey((p_secret) => context.supabase.rpc('online_runtime_get', { p_secret, p_room: room.id }));
     const runtime = rows?.[0];
     if (!runtime) throw new Error('Permainan tidak dapat dimuat');
     const result = resume(runtime.checkpoint as unknown as Checkpoint);
@@ -65,7 +59,8 @@ export const startRoom = createServerFn({ method: 'POST' })
       if (player) { player.name = member.name; player.isBot = false; }
     }
     const checkpoint = resume({ version: 1, base: game, answers: [] }).checkpoint;
-    const { error } = await context.supabase.rpc('online_room_begin', { p_secret: serverSecret(), p_room: room.id, p_checkpoint: checkpoint as unknown as Json });
+    const { withRoomKey } = await import('./room-key.server');
+    const { error } = await withRoomKey((p_secret) => context.supabase.rpc('online_room_begin', { p_secret, p_room: room.id, p_checkpoint: checkpoint as unknown as Json }));
     if (error) throw new Error(error.message);
     return true;
   });
@@ -75,8 +70,8 @@ export const submitRoomAnswer = createServerFn({ method: 'POST' })
   .handler(async ({ data, context }) => {
     const { data: member } = await context.supabase.from('online_members').select('seat').eq('room_id', data.roomId).eq('user_id', context.userId).single();
     if (!member) throw new Error('Bukan anggota ruang');
-    const secret = serverSecret();
-    const { data: rows } = await context.supabase.rpc('online_runtime_get', { p_secret: secret, p_room: data.roomId });
+    const { withRoomKey } = await import('./room-key.server');
+    const { data: rows } = await withRoomKey((p_secret) => context.supabase.rpc('online_runtime_get', { p_secret, p_room: data.roomId }));
     const runtime = rows?.[0];
     if (!runtime || runtime.revision !== data.revision) return { accepted: false };
     const result = resume(runtime.checkpoint as unknown as Checkpoint);
@@ -84,7 +79,7 @@ export const submitRoomAnswer = createServerFn({ method: 'POST' })
     if (!result.pending) throw new Error('Permainan selesai');
     const answer = validateAnswer(result.pending, data.answer);
     const next = resume({ ...result.checkpoint, answers: [...result.checkpoint.answers, answer] });
-    const { data: saved, error } = await context.supabase.rpc('online_runtime_save', { p_secret: secret, p_room: data.roomId, p_revision: data.revision, p_checkpoint: next.checkpoint as unknown as Json });
+    const { data: saved, error } = await withRoomKey((p_secret) => context.supabase.rpc('online_runtime_save', { p_secret, p_room: data.roomId, p_revision: data.revision, p_checkpoint: next.checkpoint as unknown as Json }));
     if (error) throw new Error('Jawaban belum tersimpan, coba lagi');
     return { accepted: saved === true };
   });

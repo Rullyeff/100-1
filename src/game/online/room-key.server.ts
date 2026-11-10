@@ -14,3 +14,14 @@ export async function syncRoomKey(): Promise<{ ok: boolean; reason?: string }> {
   const { error } = await supabaseAdmin.from('online_server_key').upsert({ id: true, hash });
   return error ? { ok: false, reason: 'db-error' } : { ok: true };
 }
+
+/** Runs a room RPC with the server secret, registering the key once if the database rejects it. */
+export async function withRoomKey<T extends { error: { message: string } | null }>(run: (secret: string) => PromiseLike<T>): Promise<T> {
+  const secret = process.env['ONLINE_ROOM_SECRET'];
+  if (!secret) throw new Error('Server belum diatur: kunci ruang online (ONLINE_ROOM_SECRET) belum diisi');
+  const first = await run(secret);
+  if (!first.error?.message.includes('Akses server ditolak')) return first;
+  const synced = await syncRoomKey();
+  if (!synced.ok) console.error('[rooms] server key not accepted:', synced.reason);
+  return synced.ok ? run(secret) : first;
+}
