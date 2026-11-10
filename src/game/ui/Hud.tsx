@@ -4,20 +4,8 @@ import { Link } from "@tanstack/react-router";
 import { useState as useExitState } from "react";
 import { createPortal } from "react-dom";
 import { Check, Home, LogOut, Info, X, Gauge, Landmark, Maximize, Minimize, Pause, Play, RotateCcw, Scale, Shield, Trophy, Volume2, VolumeX, Vote } from "lucide-react";
-import avKamu from "@/assets/avatars/kamu.jpg";
-import pa1 from "@/assets/avatars/avatar-1.webp";
-import pa2 from "@/assets/avatars/avatar-2.webp";
-import pa3 from "@/assets/avatars/avatar-3.webp";
-import pa4 from "@/assets/avatars/avatar-4.webp";
-import pa5 from "@/assets/avatars/avatar-5.webp";
-import pa6 from "@/assets/avatars/avatar-6.webp";
-import pa7 from "@/assets/avatars/avatar-7.webp";
-import pa8 from "@/assets/avatars/avatar-8.webp";
-import pa9 from "@/assets/avatars/avatar-9.webp";
-import avBudi from "@/assets/avatars/budi.jpg";
-import avSari from "@/assets/avatars/sari.jpg";
-import avJoko from "@/assets/avatars/joko.jpg";
-import avRina from "@/assets/avatars/rina.jpg";
+import { avatarSrc } from "./avatars";
+import { Lobby } from "./Lobby";
 import { AREAS, GATE_REQUIREMENT, MAX_PLOTS, PLEDGE, TILES, segmentOf } from "../sim/board";
 import { fmt } from "../sim/format";
 import { pledgedVotes, ranking, validVotes, type GameState } from "../sim/state";
@@ -28,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { SkipForward } from "lucide-react";
 import { useCinematic, milestone } from "../scene/cinematic";
 import { DECK_NAMES, QUESTIONS } from "../sim/quiz";
-import { PLAYER_NAMES, type BotLevel, type BotSetup, type BotStyle } from "../sim/state";
 
 const PLAYER_BG = ["bg-player-1", "bg-player-2", "bg-player-3", "bg-player-4", "bg-player-5"];
 const PLAYER_TEXT = [
@@ -39,13 +26,8 @@ const PLAYER_TEXT = [
   "text-player-5",
 ];
 const RANK_LABEL = ["1st", "2nd", "3rd", "4th", "5th"];
-const BASE_AVATARS = [avKamu, avJoko, avBudi, avSari, avRina];
-/** 10 choices for the human player's avatar; index 0 is the default. */
-export const AVATAR_CHOICES = [avKamu, pa1, pa2, pa3, pa4, pa5, pa6, pa7, pa8, pa9];
 function avatarOf(seat: number) {
-  const s = useGame.getState();
-  if (seat === s.mySeat) return AVATAR_CHOICES[s.avatar] ?? BASE_AVATARS[seat];
-  return BASE_AVATARS[seat];
+  return avatarSrc(useGame.getState().seatAvatars[seat], seat);
 }
 const AVATARS = new Proxy([] as string[], { get: (_t, k) => (typeof k === "string" && /^\d+$/.test(k) ? avatarOf(Number(k)) : undefined) });
 const RANK_STYLE = [
@@ -74,8 +56,7 @@ function phaseLabel(game: GameState, index: number): string {
 }
 
 export function Hud() {
-  useGame((s) => s.avatar);
-  useEffect(() => { const v = Number(localStorage.getItem("my-avatar")); if (v > 0 && v < AVATAR_CHOICES.length) useGame.getState().setAvatar(v); }, []);
+  useGame((s) => s.seatAvatars);
   return (
     <div className="game-ui-theme pointer-events-none absolute inset-0 z-30 select-none font-sans">
       <div className="player-topbar" aria-label="Pemain">
@@ -94,13 +75,14 @@ export function Hud() {
       <GameOver />
       <CinematicCaption />
       <PauseOverlay />
-      <BotSetupDialog />
+      <Lobby />
     </div>
   );
 }
 
 function PlayerPanel({ index }: { index: number }) {
   const mySeat = useGame((s) => s.mySeat);
+  const online = useGame((s) => s.online);
   const game = useGame((s) => s.game);
   const p = game.players[index];
   if (!p || p.absent) return null;
@@ -157,7 +139,7 @@ function PlayerPanel({ index }: { index: number }) {
         {isTurn ? (
           <span className="player-turn-pill">
             <span className="player-turn-dot" aria-hidden />
-            {index === mySeat ? "GILIRANMU" : "GILIRAN"}
+            {(online ? index === mySeat : !p.isBot) ? "GILIRANMU" : "GILIRAN"}
           </span>
         ) : (
           AREAS[index]?.name
@@ -879,7 +861,8 @@ function GameOver() {
   const game = useGame((s) => s.game);
   if (!game.over) return null;
   const order = ranking(game);
-  const youWon = order[0] === mySeat;
+  const humans = game.players.filter((p) => !p.isBot && !p.absent).length;
+  const youWon = online ? order[0] === mySeat : humans === 1 && !game.players[order[0]!]!.isBot;
   return (
     <div className="game-dialog pointer-events-auto absolute inset-0 z-40 flex items-center justify-center bg-background/70 p-4">
       <div className="paper-card animate-pop-in w-full max-w-sm p-6 text-center">
@@ -913,112 +896,5 @@ function GameOver() {
         <Link to="/" className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-border py-2.5 font-semibold hover:bg-muted"><Home className="h-4 w-4" /> Kembali ke Beranda</Link>
       </div>
     </div>
-  );
-}
-
-const LEVELS: { id: BotLevel; label: string; hint: string }[] = [
-  { id: "mudah", label: "Mudah", hint: "Bot sering salah kuis" },
-  { id: "sedang", label: "Sedang", hint: "Lawan seimbang" },
-  { id: "sulit", label: "Sulit", hint: "Bot jarang salah" },
-];
-const STYLES: { id: BotStyle; label: string }[] = [
-  { id: "hemat", label: "Hemat" },
-  { id: "seimbang", label: "Seimbang" },
-  { id: "agresif", label: "Agresif" },
-];
-
-/** Offline setup: difficulty, number of bot opponents and each bot's play style. */
-function BotSetupDialog() {
-  const open = useGame((s) => s.setupOpen);
-  const saved = useGame((s) => s.botSetup);
-  const [cfg, setCfg] = useState<BotSetup>(saved);
-  useEffect(() => { if (open) setCfg(saved); }, [open, saved]);
-  if (!open) return null;
-  const running = useGame.getState().game.round > 1 || useGame.getState().game.openingShown;
-  const chip = (on: boolean) => cn("setup-chip", on && "setup-chip-on");
-  return (
-    <div className="game-dialog pointer-events-auto absolute inset-0 z-50 flex items-center justify-center bg-background/75 p-4 backdrop-blur-sm">
-      <div className="paper-card card-flip-in max-h-[90dvh] w-full max-w-md space-y-4 overflow-y-auto p-5" role="dialog" aria-label="Pengaturan bot">
-        <div className="text-center">
-          <div className="font-display text-2xl">Atur Lawan Bot</div>
-          <p className="text-xs text-muted-foreground">Pilih tingkat kesulitan, jumlah lawan, dan gaya main tiap bot.</p>
-        </div>
-        <AvatarPicker />
-        <section className="space-y-1.5">
-          <div className="setup-label">Tingkat kesulitan</div>
-          <div className="grid grid-cols-3 gap-2">
-            {LEVELS.map((l) => (
-              <button key={l.id} type="button" className={chip(cfg.level === l.id)} onClick={() => { sfx.click(); setCfg({ ...cfg, level: l.id }); }}>
-                <b>{l.label}</b><small>{l.hint}</small>
-              </button>
-            ))}
-          </div>
-        </section>
-        <section className="space-y-1.5">
-          <div className="setup-label">Jumlah lawan</div>
-          <div className="grid grid-cols-4 gap-2">
-            {[1, 2, 3, 4].map((n) => (
-              <button key={n} type="button" className={chip(cfg.opponents === n)} onClick={() => { sfx.click(); setCfg({ ...cfg, opponents: n }); }}>
-                <b>{n}</b><small>bot</small>
-              </button>
-            ))}
-          </div>
-        </section>
-        <section className="space-y-1.5">
-          <div className="setup-label">Gaya main</div>
-          {Array.from({ length: cfg.opponents }, (_, k) => (
-            <div key={k} className="flex items-center gap-2">
-              <img src={AVATARS[k + 1]} alt="" width={32} height={32} className="h-8 w-8 shrink-0 rounded-full object-cover" />
-              <span className="w-12 shrink-0 font-display text-sm">{PLAYER_NAMES[k + 1]}</span>
-              <div className="grid min-w-0 flex-1 grid-cols-3 gap-1.5">
-                {STYLES.map((st) => (
-                  <button key={st.id} type="button" className={cn(chip(cfg.styles[k] === st.id), "py-1")} onClick={() => {
-                    sfx.click();
-                    const styles = [...cfg.styles];
-                    styles[k] = st.id;
-                    setCfg({ ...cfg, styles });
-                  }}>
-                    <small className="!text-[11px] !font-bold">{st.label}</small>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
-          <p className="text-[11px] text-muted-foreground">Hemat menyimpan suara, Agresif sering mengklaim wilayah.</p>
-        </section>
-        <div className="flex gap-2">
-          {running ? (
-            <Button variant="secondary" className="btn-soft h-auto flex-1 py-2.5" onClick={() => useGame.setState({ setupOpen: false, paused: false })}>
-              Batal
-            </Button>
-          ) : (
-            <Button asChild variant="secondary" className="btn-soft h-auto flex-1 py-2.5">
-              <Link to="/">Batal</Link>
-            </Button>
-          )}
-          <button className="btn-gold flex-[2] py-2.5 text-lg" onClick={() => { sfx.click(); useGame.getState().newGame(cfg); }}>
-            {running ? "Mulai Ulang" : "Mulai Main"}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function AvatarPicker() {
-  const avatar = useGame((s) => s.avatar);
-  return (
-    <section className="space-y-1.5">
-      <div className="setup-label">Avatar kamu</div>
-      <div className="grid grid-cols-10 gap-1.5">
-        {AVATAR_CHOICES.map((src, i) => (
-          <button key={i} type="button" aria-label={`Avatar ${i + 1}`} aria-pressed={avatar === i}
-            onClick={() => { sfx.click(); useGame.getState().setAvatar(i); }}
-            className={cn("aspect-square overflow-hidden rounded-full border-2 transition-transform hover:scale-110", avatar === i ? "border-gold scale-110 shadow-lg" : "border-transparent opacity-70")}>
-            <img src={src} alt="" width={40} height={40} className="h-full w-full object-cover" />
-          </button>
-        ))}
-      </div>
-    </section>
   );
 }
