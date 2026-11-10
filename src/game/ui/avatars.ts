@@ -32,8 +32,11 @@ export const AVATAR_LIST = [
   pa10, pa11, pa12, pa13, pa14, pa15, pa16, pa17, pa18,
 ];
 
-/** Default avatar index per seat (Kamu, Joko, Budi, Sari, Rina). */
-export const DEFAULT_SEAT_AVATARS = [0, 10, 11, 12, 13];
+/**
+ * Default avatar per seat, matching the area characters on Beranda: Layanan Publik = Pak Harjo,
+ * Inklusivitas = Bu Laras, Pendidikan = Siti, Lingkungan = Dimas, Ekonomi = Maya.
+ */
+export const DEFAULT_SEAT_AVATARS = [4, 6, 1, 5, 3];
 
 export const avatarSrc = (index: number | undefined, seat: number) =>
   AVATAR_LIST[index ?? -1] ?? AVATAR_LIST[DEFAULT_SEAT_AVATARS[seat] ?? 0]!;

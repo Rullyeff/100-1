@@ -91,7 +91,7 @@ export interface GameState {
 }
 
 /** Seat order follows the arms clockwise; seat k plays area k. */
-export const PLAYER_NAMES = ["Kamu", "Joko", "Budi", "Sari", "Rina"];
+export const PLAYER_NAMES = ["Kamu", "Laras", "Siti", "Dimas", "Maya"];
 
 export function createGame(seed = Date.now() >>> 0, humanCount = 1, setup?: BotSetup): GameState {
   const s: GameState = {

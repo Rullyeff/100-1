@@ -49,11 +49,11 @@ describe("susunan kursi Latihan vs Bot", () => {
   it("1 Manusia + 4 Bot: kelima kursi bermain, hanya kursi 1 manusia", () => {
     const s = createGame(5, 1, {
       opponents: 4, level: "sedang", styles: ["hemat", "agresif", "seimbang", "seimbang"],
-      seats: [seat("Kamu", false), seat("Bot Joko", true), seat("Bot Budi", true), seat("Bot Sari", true), seat("Bot Rina", true)],
+      seats: [seat("Kamu", false), seat("Bot Laras", true), seat("Bot Siti", true), seat("Bot Dimas", true), seat("Bot Maya", true)],
     });
     expect(s.players.every((p) => !p.absent)).toBe(true);
     expect(s.players.map((p) => p.isBot)).toEqual([false, true, true, true, true]);
-    expect(s.players[1]!.name).toBe("Bot Joko");
+    expect(s.players[1]!.name).toBe("Bot Laras");
     expect(s.players[1]!.style).toBe("hemat");
   });
 

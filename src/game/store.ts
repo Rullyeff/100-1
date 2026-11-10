@@ -80,10 +80,10 @@ const PACE = {
 /** Practice lobby default: you plus four bots. */
 export const DEFAULT_SEATS = [
   { name: "Kamu", bot: false },
-  { name: "Bot Joko", bot: true },
-  { name: "Bot Budi", bot: true },
-  { name: "Bot Sari", bot: true },
-  { name: "Bot Rina", bot: true },
+  { name: "Bot Laras", bot: true },
+  { name: "Bot Siti", bot: true },
+  { name: "Bot Dimas", bot: true },
+  { name: "Bot Maya", bot: true },
 ];
 
 let generation = 0;
@@ -106,8 +106,9 @@ export const useGame = create<Store>((set, get) => ({
   fast: false,
   muted: false,
   paused: false,
-  avatar: 0,
-  setAvatar: (i) => { set({ avatar: i }); try { localStorage.setItem("my-avatar", String(i)); } catch { /* ignore */ } },
+  /** -1 follows the seat's default area character. */
+  avatar: -1,
+  setAvatar: (i) => { set({ avatar: i }); try { localStorage.setItem("my-avatar-v2", String(i)); } catch { /* ignore */ } },
   botSetup: {
     opponents: 4,
     level: "sedang",

@@ -24,7 +24,7 @@ const AREA_ICON: Record<string, typeof Leaf> = {
   lingkungan: Leaf,
   ekonomi: Briefcase,
 };
-const BOT_NAMES = ["Bot Ayu", "Bot Joko", "Bot Budi", "Bot Sari", "Bot Rina"];
+const BOT_NAMES = ["Bot Harjo", "Bot Laras", "Bot Siti", "Bot Dimas", "Bot Maya"];
 const humanName = (seat: number) => (seat === 0 ? "Kamu" : `Pemain ${seat + 1}`);
 const isDefaultName = (name: string, seat: number) =>
   !name.trim() || name === humanName(seat) || name === BOT_NAMES[seat] || name === DEFAULT_SEATS[seat]?.name;
@@ -45,7 +45,7 @@ export function applyFormation(seats: SeatSetup[], humans: number): SeatSetup[] 
   });
 }
 
-const LOBBY_KEY = "bot-lobby";
+const LOBBY_KEY = "bot-lobby-v2";
 
 /** Pre-game screen on /main: online rooms ("Main Bersama") or the practice lineup ("Latihan vs Bot"). */
 export function Lobby() {
@@ -55,8 +55,9 @@ export function Lobby() {
   const [mode, setMode] = useState<LobbyMode>(search.mode ?? "bot");
   useEffect(() => { if (search.mode) setMode(search.mode); }, [search.mode]);
   useEffect(() => {
-    const v = Number(localStorage.getItem("my-avatar"));
-    if (v > 0 && v < AVATAR_LIST.length) useGame.getState().setAvatar(v);
+    const raw = localStorage.getItem("my-avatar-v2");
+    const v = raw === null ? NaN : Number(raw);
+    if (v >= 0 && v < AVATAR_LIST.length) useGame.setState({ avatar: v });
   }, []);
   if (!open) return null;
   const pick = (m: LobbyMode) => {
@@ -161,7 +162,7 @@ function BotLobby() {
   const [seats, setSeats] = useState<SeatSetup[]>(stored?.seats ?? saved.seats ?? DEFAULT_SEATS);
   const [avatars, setAvatars] = useState<number[]>(() => {
     const mine = useGame.getState().avatar;
-    return stored?.avatars ?? DEFAULT_SEAT_AVATARS.map((a, i) => (i === 0 ? mine : a));
+    return stored?.avatars ?? DEFAULT_SEAT_AVATARS.map((a, i) => (i === 0 && mine >= 0 ? mine : a));
   });
   const [picking, setPicking] = useState<number | null>(null);
   useEffect(() => {
@@ -263,7 +264,7 @@ function TogetherLobby() {
     setBusy(true); setError("");
     try {
       await ensureSession();
-      const id = await operation({ data: { operation: op, name: name.trim(), code: op === "join" ? code : undefined, seat: area, avatar } });
+      const id = await operation({ data: { operation: op, name: name.trim(), code: op === "join" ? code : undefined, seat: area, avatar: avatar >= 0 ? avatar : DEFAULT_SEAT_AVATARS[area]! } });
       if (id) await navigate({ to: "/ruang/$roomId", params: { roomId: id } });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Coba lagi");
@@ -324,7 +325,7 @@ function TogetherLobby() {
           </p>
         </div>
       </div>
-      {picking && <AvatarPicker value={avatar} onClose={() => setPicking(false)} onPick={(v) => useGame.getState().setAvatar(v)} />}
+      {picking && <AvatarPicker value={avatar >= 0 ? avatar : DEFAULT_SEAT_AVATARS[area]!} onClose={() => setPicking(false)} onPick={(v) => useGame.getState().setAvatar(v)} />}
     </LobbyCard>
   );
 }
