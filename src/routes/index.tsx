@@ -104,12 +104,12 @@ function Index() {
           </div>
 
           <div className="home-actions">
-            <Link to="/ruang" className="home-btn home-play">
+            <Link to="/main" search={{ mode: "bersama" }} className="home-btn home-play">
               <span className="home-play-icon"><Play /></span>
               <span className="home-btn-label"><b>MAIN BERSAMA</b><small>Ruang privat · 5 pemain</small></span>
               <ChevronRight className="home-btn-arrow" />
             </Link>
-            <Link to="/main" className="home-btn home-alt">
+            <Link to="/main" search={{ mode: "bot" }} className="home-btn home-alt">
               <span className="home-alt-icon"><Bot /></span>
               <span className="home-btn-label"><b>LATIHAN VS BOT</b><small>Main sendiri, kapan saja</small></span>
               <ChevronRight className="home-btn-arrow" />
